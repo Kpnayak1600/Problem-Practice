@@ -26,11 +26,9 @@ class GfG
 class Solution{
     public int gcd(int A , int B) { 
         //code here
-        while(B%A!=0){
-            int temp = A;
-            A = B%A;
-            B = temp;
+        if(B%A==0){
+            return A;
         }
-        return A;
+        return gcd(B%A,A);
     } 
 }

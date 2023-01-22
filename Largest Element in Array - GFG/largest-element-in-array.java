@@ -40,8 +40,8 @@ class Compute {
         if(n==0){
             return 0;
         }
-        largest(arr,n-1);
         res = Math.max(res,arr[n-1]);
+        largest(arr,n-1);
         return res;
     }
 }

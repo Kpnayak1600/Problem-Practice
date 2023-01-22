@@ -26,12 +26,14 @@ class GFG
 //User function Template for Java
 
 class Solution{
+    long res = 0;
     public long reverse_digit(long n){
         // Code here
-        long res = 0;
-        for(int i=10;n>0;n/=10){
-            res = res*10 +n%10;
+        if(n==0){
+            return 0;
         }
+        res = res*10 + n%10;
+        reverse_digit(n/10);
         return res;
     }
 }

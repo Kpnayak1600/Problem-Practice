@@ -23,23 +23,22 @@ class GFG{
 //User function Template for Java
 
 class Solution{
-    static long sequence(int N){   
-        // code here
-        int count = 1;
-        long temp = 1;
-        long res = 0;
-        for(int i=1;i<=N;i++){
-            for(int j=1;j<=i;j++){
-                temp *= count;
-                //System.out.print(count+" * ");
-                count++;
-            }
-            res += temp;
-            //System.out.println(" = "+temp);
-            //System.out.print(" + ");
-            //System.out.println(res);
-            temp =1;
+    static int startNum(int N){
+        int x = N-1;
+        int res = (x*(x+1))/2;
+        return res+1;
+    }
+    static long product(int N,int res){
+        if(N==0){
+            return 1;
         }
-        return res;
+        return res*product(N-1,res+1);
+    }
+    static long sequence(int N){
+        // code here
+        if(N==1){
+            return 1;
+        }
+        return sequence(N-1)+product(N,startNum(N));
     }
 }

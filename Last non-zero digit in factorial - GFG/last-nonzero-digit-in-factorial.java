@@ -34,7 +34,7 @@ class GFG
 
 
 class Solution{
-    public static java.math.BigInteger factorial(int N){
+    java.math.BigInteger factorial(int N){
         if(N==1){
             return java.math.BigInteger.valueOf(1);
         }

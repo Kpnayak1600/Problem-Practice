@@ -30,23 +30,45 @@ class GFG {
 
 // User function Template for Java
 
+
+
+// User function Template for Java
+
 class Solution {
+    ArrayList<Long> newCol(List<ArrayList<Long>>a,int i,int j,ArrayList<Long>c){
+        if(j==i){
+            c.add((long)1);
+            return c;
+        }
+        if(j==0){
+            c.add((long)1);
+        }else{
+            c.add((a.get(i-1).get(j-1)+a.get(i-1).get(j))%1000000007);
+        }
+        newCol(a,i,j+1,c);
+        return c;
+    }
+    List<ArrayList<Long>> reqRow(int n,List<ArrayList<Long>>a,int i){
+        if(i==0){
+            ArrayList<Long> r = new ArrayList<>();
+            r.add((long)1);
+            a.add(r);
+            i=i+1;
+        }
+        if(i==n ){
+            return a;
+        }
+        ArrayList<Long> c = new ArrayList<>();
+        a.add(newCol(a,i,0,c));
+        reqRow(n,a,i+1);
+        return a;
+    }
     ArrayList<Long> nthRowOfPascalTriangle(int n) {
         // code here
-        ArrayList<Long> prev = null,curr = null;
-        for(int i=0;i<n;i++){
-            curr = new ArrayList<>();
-            for(int j=0;j<=i;j++){
-                if(i<2 || j==i || j==0){
-                    curr.add((long)1);
-                    continue;
-                }
-                curr.add((prev.get(j-1)+prev.get(j))%1000000007);
-            }
-            prev = curr;
-           // System.out.println(prev);
-        }
+        List<ArrayList<Long>> a = new ArrayList<>();
+        ArrayList<Long> curr=null;
+        a = reqRow(n,a,0);
         //System.out.println(a);
-        return prev;
+        return a.get(n-1);
     }
 }

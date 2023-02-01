@@ -9,26 +9,26 @@ import java.util.*;
 //User function template for Java
 
 class Solution{
-    static void swap(int[]a,int i,int j){
-        int temp=a[i];
-        a[i]=a[j];
-        a[j]=temp;
+    static void swap(int a[],int i,int j){
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
     }
     public static void sort012(int a[], int n){
         // code here 
         int i=0;
-        int k=0;
-        int j=n-1;
-        while(j>=k){
-            if(a[k]==0){
-                swap(a,i,k);
-                k++;
+        int j=0;
+        int end = n-1;
+        while(j<=end){
+            if(a[j]==0){
+                swap(a,i,j);
                 i++;
-            }else if(a[k]==1){
-                k++;
+                j++;
+            }else if(a[j]==2){
+                swap(a,j,end);
+                end--;
             }else{
-                swap(a,k,j);
-                j--;
+                j++;
             }
         }
     }

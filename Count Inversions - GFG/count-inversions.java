@@ -54,7 +54,7 @@ class Solution{
                 arr[k++] = left[i++];
             }else{
                 arr[k++] = right[j++];
-                c+= mid+1 - (l+i);
+                c+= left.length - i;
             }
         }
         while(i<left.length){

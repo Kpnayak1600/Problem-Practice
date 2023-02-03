@@ -68,12 +68,13 @@ class Solution{
     }
     static long mergeSort(long arr[],int l,int r){
         long c =0;
-        if(l<r){
-           int mid = (r+l)/2;
-            c+=mergeSort(arr,l,mid);
-            c+=mergeSort(arr,mid+1,r);
-            c+=merge(arr,l,r,mid);
+        if(l>=r){
+           return 0;
         }
+        int mid = (r+l)/2;
+        c+=mergeSort(arr,l,mid);
+        c+=mergeSort(arr,mid+1,r);
+        c+=merge(arr,l,r,mid);
         return c;
     }
     static long inversionCount(long arr[], long N){

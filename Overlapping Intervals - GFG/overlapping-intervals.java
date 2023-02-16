@@ -56,6 +56,11 @@ class Solution{
             }
         }
         res.add(prev);
-        return res.toArray(new int[res.size()][]);
+        int [][] ans = new int[res.size()][2];
+        int j=0;
+        for(int[] i : res){
+            ans[j++] = i;
+        }
+        return ans;
     }
 }

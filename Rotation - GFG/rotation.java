@@ -37,9 +37,10 @@ class Solution {
         int end = n-1;
         while(start<=end){
             int mid = start+(end-start)/2;
+            //System.out.println(start+" "+end+" "+mid+" "+arr[mid]);
             if(arr[mid]<=arr[(mid+1)%n]&&arr[mid]<=arr[(mid+n-1)%n]){
                 return mid;
-            }else if(arr[mid]<arr[end]){
+            }else if(arr[mid]<arr[0]){
                 end = mid-1;
             }else{
                 start = mid+1;

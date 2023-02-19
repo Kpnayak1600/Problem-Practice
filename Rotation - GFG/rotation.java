@@ -42,7 +42,9 @@ class Solution {
                 return mid;
             }else if(arr[mid]<=arr[end]){
                 end = mid-1;
-            }else if(arr[mid]>=arr[start]){
+            }
+            //else if(arr[mid]>=arr[start]){
+            else {
                 start = mid+1;
             }
         }

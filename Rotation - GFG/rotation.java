@@ -29,23 +29,22 @@ class GFG {
 
 // User function Template for Java
 
+
 class Solution {
     int findKRotation(int arr[], int n) {
         // code here
         int start =0;
-        int end =n-1;
+        int end = n-1;
         while(start<=end){
-            int mid = start + (end-start)/2;
-            int prev = (mid+n-1)%n;
-            int next = (mid+1)%n;
-            if(arr[mid]<=arr[prev]&&arr[mid]<=arr[next]){
+            int mid = start+(end-start)/2;
+            if(arr[mid]<=arr[(mid+1)%n]&&arr[mid]<=arr[(mid+n-1)%n]){
                 return mid;
-            }else if(arr[mid]<=arr[end]){
+            }else if(arr[mid]<arr[end]){
                 end = mid-1;
-            }else {
+            }else{
                 start = mid+1;
             }
         }
         return 0;
-    } 
+    }
 }

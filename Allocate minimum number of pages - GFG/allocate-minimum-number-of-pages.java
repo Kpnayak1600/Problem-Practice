@@ -34,16 +34,6 @@ class GFG {
 class Solution {
     //Function to find minimum number of pages.
     static boolean isValid(int mid,int[] A,int M){
-        // int st=1;
-        // int sum =A[0];
-        // for(int i=1;i<A.length;i++){
-        //     if(sum>mid){
-        //         st++;
-        //         sum=A[i];
-        //     }else{
-        //         sum+=A[i];
-        //     }
-        // }
         int req =1;
         int sum =0;
         for(int i=0;i<A.length;i++){

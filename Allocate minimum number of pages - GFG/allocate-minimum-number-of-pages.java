@@ -37,11 +37,10 @@ class Solution {
         int req =1;
         int sum =0;
         for(int i=0;i<A.length;i++){
-            if(sum+A[i]>mid){
+            sum +=A[i];
+            if(sum>mid){
                 req++;
                 sum=A[i];
-            }else{
-                sum+=A[i];
             }
         }
         return req<=M;

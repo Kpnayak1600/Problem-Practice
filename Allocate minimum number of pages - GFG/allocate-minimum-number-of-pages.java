@@ -31,36 +31,55 @@ class GFG {
 
 //User function Template for Java
 
+
+
+//User function Template for Java
+
+
+
+//User function Template for Java
+
+
+
+//User function Template for Java
+
 class Solution {
     //Function to find minimum number of pages.
-    static boolean isValid(int mid,int[] A,int M){
-        int req =1;
+    static boolean isValid(int mid,int[] Arr,int M){
+                 int student = 1;
+
         int sum =0;
-        for(int i=0;i<A.length;i++){
-            sum +=A[i];
+
+        for(int i=0; i< Arr.length ; i++){
+            if(Arr[i]>mid)return false;
+            sum += Arr[i];
             if(sum>mid){
-                req++;
-                sum=A[i];
+                student++;
+                sum = Arr[i];
             }
+
         }
-        return req<=M;
+
+        if(student > M) return false;
+
+        return true;
     }
     public static int findPages(int[]A,int N,int M){
         //Your code here
         if(M>N){
             return -1;
         }
-        int sum =0;
-        int max = Integer.MIN_VALUE;
-        for(int i=0;i<N;i++){
-            max = Math.max(max,A[i]);
-            sum += A[i];
+        int j =0;
+        int i =0;
+        //int min = Integer.MAX_VALUE;
+        for(int k=0;k<N;k++){
+            //min = Math.min(min,A[i]);
+            j += A[k];
         }
-        int i=max;
-        int j=sum;
-        int res = -1;
+        int mid =0;
+        int res = 0;
         while(i<=j){
-            int mid = i+(j-i)/2;
+            mid = i+(j-i)/2;
             if(isValid(mid,A,M)){
                 res = mid;
                 j=mid-1;

@@ -69,13 +69,13 @@ class Solution {
         if(M>N){
             return -1;
         }
-        int j =0;
+        int j =10000000;
         int i =0;
         //int min = Integer.MAX_VALUE;
-        for(int k=0;k<N;k++){
-            //min = Math.min(min,A[i]);
-            j += A[k];
-        }
+        // for(int k=0;k<N;k++){
+        //     //min = Math.min(min,A[i]);
+        //     j += A[k];
+        // }
         int mid =0;
         int res = 0;
         while(i<=j){

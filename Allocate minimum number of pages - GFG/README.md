@@ -1,11 +1,11 @@
 # Allocate minimum number of pages
 ## Hard
 <div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">You are given <strong>N </strong>number of books. Every <strong>ith</strong> book has<strong> Ai</strong> number of pages.&nbsp;</span><br>
-<span style="font-size:18px">You have to allocate contiguous&nbsp;books to <strong>M </strong>number of students. There can be many ways or permutations to do so. In each permutation, one of the M students will be allocated the maximum number of pages. Out of all these permutations, the task is to find that particular permutation in which the maximum number of pages allocated to a student is the minimum of those in all the other permutations and print this minimum value.</span></p>
+<span style="font-size:18px">You have to allocate contiguous&nbsp;books to <strong>M </strong>number of students. There can be many ways or permutations to do so. In each permutation, one of the M students will be allocated the maximum number of pages. Out of all these permutations, the task is to find that particular permutation in which the <strong>maximum number of pages allocated to a student is the minimum</strong> of those in all the other permutations and <strong>print this minimum value</strong>.</span></p>
 
 <p><span style="font-size:18px">Each book will be allocated to exactly one student. Each student has to be allocated at least one book.</span></p>
 
-<p><span style="font-size:18px">Note: Return <strong>-1</strong> if a valid assignment is not possible, and allotment should be in contiguous order (see the explanation for better understanding).</span></p>
+<p><span style="font-size:18px"><strong>Note</strong>: Return <strong>-1</strong> if a valid assignment is not possible, and allotment should be in contiguous order (see the explanation for better understanding).</span></p>
 
 <p>&nbsp;</p>
 

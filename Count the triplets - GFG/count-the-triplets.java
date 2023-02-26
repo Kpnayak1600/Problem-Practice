@@ -48,7 +48,7 @@ class Solution {
                 i++;
                 j--;
             }else if(sum<s){
-                j--;;
+                j--;
             }else{
                 i++;
             }

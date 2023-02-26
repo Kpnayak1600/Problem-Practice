@@ -30,6 +30,10 @@ class Main
 
 //User function Template for Java
 
+
+
+//User function Template for Java
+
 class Solution{
     //Function to find if there exists a triplet in the 
     //array A[] which sums up to X.
@@ -37,14 +41,21 @@ class Solution{
        // Your code Here
        Arrays.sort(A);
        for(int i=0;i<n;i++){
-           if(find(x-A[i],A,i+1,n-1)){
+           if(find(x-A[i],A,i)){
                return true;
            }
        }
        return false;
     }
-    static boolean find(int x,int[] A,int i,int j){
+    static boolean find(int x,int[] A,int d){
+        int i=0;
+        int j=A.length-1;
         while(i<j){
+            if(i==d || j==d){
+                i++;
+                j--;
+                continue;
+            }
             int sum = A[i]+A[j];
             if(sum == x){
                 return true;

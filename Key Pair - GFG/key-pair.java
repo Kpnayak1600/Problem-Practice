@@ -38,18 +38,13 @@ public class Main {
 class Solution {
     boolean hasArrayTwoCandidates(int arr[], int n, int x) {
         // code here
-        Arrays.sort(arr);
-        int i=0;
-        int j=n-1;
-        while(i<j){
-            int sum = arr[i]+arr[j];
-            if(sum==x){
+        Set<Integer> s = new HashSet<>();
+        for(int i=0;i<n;i++){
+            int find = x-arr[i];
+            if(s.contains(find)){
                 return true;
-            }else if(sum>x){
-                j--;
-            }else{
-                i++;
             }
+            s.add(arr[i]);
         }
         return false;
     }

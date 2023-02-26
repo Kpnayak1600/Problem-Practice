@@ -41,15 +41,12 @@ class Solution{
        return false;
     }
     static boolean find(int x,int[] A,int i,int j){
-        while(i<j){
-            int sum = A[i]+A[j];
-            if(sum == x){
+        Set<Integer> s = new HashSet<>();
+        for(;i<=j;i++){
+            if(s.contains(x-A[i])){
                 return true;
-            }else if(sum<x){
-                i++;
-            }else{
-                j--;
             }
+            s.add(A[i]);
         }
         return false;
     }

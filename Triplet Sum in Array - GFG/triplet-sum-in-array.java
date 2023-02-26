@@ -45,11 +45,6 @@ class Solution{
     }
     static boolean find(int x,int[] A,int i,int j){
         while(i<j){
-            // if(i==d || j==d){
-            //     i++;
-            //     j--;
-            //     continue;
-            // }
             int sum = A[i]+A[j];
             if(sum == x){
                 return true;

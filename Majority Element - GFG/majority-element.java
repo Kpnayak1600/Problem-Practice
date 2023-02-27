@@ -33,17 +33,16 @@ class Solution{
     static int majorityElement(int a[], int size){
         // your code here
         int n = a.length;
-        int res = a[0];
-        int count = 1;
-        for(int i=1;i<n;i++){
+        int res = -1;
+        int count = 0;
+        for(int i=0;i<n;i++){
             if(a[i]==res){
                 count++;
-            }else if(a[i]!=res){
-                count--;
-            }
-            if(count == 0){
+            }else if(count == 0){
                 count = 1;
                 res = a[i];
+            }else {
+                count--;
             }
         }
         count = 0;

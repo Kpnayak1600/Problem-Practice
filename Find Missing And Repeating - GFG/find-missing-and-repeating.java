@@ -37,19 +37,11 @@ class Solve {
         while(i<n){
             if(arr[i]!=arr[arr[i]-1]){
                 int temp1 = arr[i];
-                arr[i] = arr[arr[i]-1];
+                arr[i] = arr[temp1-1];
                 arr[temp1-1] = temp1;
             }else{
                 i++;
             }
-            // if(arr[i]!=arr[arr[i]-1])
-            // {
-            //     int temp1=arr[i];
-            //     arr[i]=arr[temp1-1];
-            //     arr[temp1-1]=temp1;
-            // }else{
-            //     i++;
-            // }
         }
         for(i=0;i<n;i++){
             if(arr[i]!=(i+1)){

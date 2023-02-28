@@ -35,33 +35,22 @@ class Solve {
         int temp[] = new int[2];
         int i=0;
         while(i<n){
-            // if(arr[i]!=(i+1)){
-            //     int temp1 = arr[i];
-            //     arr[i] = arr[arr[i]-1];
-            //     arr[temp1-1] = temp1;
-            // }else{
-            //     i++;
-            // }
-            if(arr[i]!=arr[arr[i]-1])
-            {
-                int temp1=arr[i];
-                arr[i]=arr[temp1-1];
-                arr[temp1-1]=temp1;
+            if(arr[i]!=arr[arr[i]-1]){
+                int temp1 = arr[i];
+                arr[i] = arr[arr[i]-1];
+                arr[temp1-1] = temp1;
             }else{
                 i++;
             }
+            // if(arr[i]!=arr[arr[i]-1])
+            // {
+            //     int temp1=arr[i];
+            //     arr[i]=arr[temp1-1];
+            //     arr[temp1-1]=temp1;
+            // }else{
+            //     i++;
+            // }
         }
-        // while(i<size)
-        // {
-        //     if(arr[i]!=arr[arr[i]-1])
-        //     {
-        //         int temp=arr[i];
-        //         arr[i]=arr[temp-1];
-        //         arr[temp-1]=temp;
-        //     }else{
-        //         i++;
-        //     }
-        // }
         for(i=0;i<n;i++){
             if(arr[i]!=(i+1)){
                 temp[0]=arr[i];

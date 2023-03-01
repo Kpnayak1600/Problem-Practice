@@ -50,26 +50,22 @@ class GFG
 
 //User function Template for Java
 
-class Solution
-{
+class Solution{
     //Function to rotate an array by d elements in counter-clockwise direction. 
-    static void rotateArr(int arr[], int k, int n)
-    {
+    static void rotateArr(int arr[], int d, int n){
         // add your code here
-        int r = k%arr.length;
-        int temp[] = new int[arr.length];
-        int ind =0;
-        for(int i=r;i<arr.length;i++){
-            temp[i-r] = arr[i];
-            ind = i-r;
+        d %= n;
+        reverse(arr,0,d-1);
+        reverse(arr,d,n-1);
+        reverse(arr,0,n-1);
+    }
+    static void reverse(int []arr,int i,int j){
+        while(i<j){
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            j--;
+            i++;
         }
-        for(int i=0;i<r;i++){
-            ind++;
-            temp[ind] = arr[i];
-        }
-        for(int i=0;i<temp.length;i++){
-            arr[i] = temp[i];
-        }
-        return;
     }
 }

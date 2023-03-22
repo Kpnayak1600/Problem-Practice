@@ -120,10 +120,8 @@ class Solution
             }
         }
         if(fast!=slow){
-            //System.out.println("NO LOOP");
             return;
         }
-        //System.out.println(slow.data+" "+fast.data);
         slow = head;
         if(slow!=fast){
             while(slow.next!=fast.next){

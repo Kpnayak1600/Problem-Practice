@@ -90,25 +90,31 @@ class Node{
 class Solution{
     Node divide(int N, Node head){
         // code here
-        Node end = head;
-        int count = 1;
-        while(end.next!=null){
-            end=end.next;
-            count++;
-        }
-        Node temp2 = end;
-        Node temp = head;
-        while(count>0){
-            if(temp.data%2!=0){
-                end.next = new Node(temp.data);
-                end = end.next;
-                temp.data = temp.next.data;
-                temp.next = temp.next.next;
+        Node es =null, ee=null,os=null,oe=null;
+        for(Node i=head;i!=null;i=i.next){
+            if(i.data%2==0){
+                if(es==null){
+                    es=i;
+                    ee=i;
+                }else{
+                    ee.next = i;
+                    ee=ee.next;
+                }
             }else{
-                temp = temp.next;
+                if(os==null){
+                    os=i;
+                    oe=i;
+                }else{
+                    oe.next=i;
+                    oe=oe.next;
+                }
             }
-            count--;
         }
-        return head;
+        if(es==null||os==null){
+            return head;
+        }
+        ee.next = os;
+        oe.next = null;
+        return es;
     }
 }

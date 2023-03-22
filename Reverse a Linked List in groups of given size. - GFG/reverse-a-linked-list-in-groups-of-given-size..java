@@ -76,27 +76,22 @@ class Node
 class Solution{
     public static Node reverse(Node head, int k){
         //Your code here
-        Node cur = head,prevFirst = null;
-        boolean isFirstPass = true;
-        while(cur!=null){
-            Node prev = null,first = cur;
-            int count = 0;
-            while(cur!=null&&count<k){
-                count++;
-                Node nxt = cur.next;
-                cur.next = prev;
-                prev = cur;
-                cur = nxt;
+        Node dummy = new Node(-1);
+        dummy.next = head;
+        Node prev = dummy;
+        
+        while(prev.next!=null){
+            Node cur = prev.next;
+            Node nxt = cur.next;
+            for(int i=1;nxt!=null&&i<k;i++){
+                cur.next = nxt.next;
+                nxt.next = prev.next;
+                prev.next =nxt;
+                nxt = cur.next;
             }
-            if(isFirstPass){
-                head = prev;
-                isFirstPass=false;
-            }else{
-                prevFirst.next=prev;
-            }
-            prevFirst=first;
+            prev = cur;
         }
-        return head;
+        return dummy.next;
     }
 }
 

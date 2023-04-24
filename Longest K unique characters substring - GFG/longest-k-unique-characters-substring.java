@@ -36,13 +36,16 @@ class Solution {
                 res = Math.max(res,j-i+1);
                 j++;
             }else if(mp.size()>k){
-                if(mp.containsKey(s.charAt(i))){
-                    mp.put(s.charAt(i),mp.get(s.charAt(i))-1);
+                while(mp.size()>k){
+                    if(mp.containsKey(s.charAt(i))){
+                        mp.put(s.charAt(i),mp.get(s.charAt(i))-1);
+                    }
+                    if(mp.get(s.charAt(i))==0){
+                        mp.remove(s.charAt(i));
+                    }
+                    i++;
                 }
-                if(mp.get(s.charAt(i))==0){
-                    mp.remove(s.charAt(i));
-                }
-                j++;i++;
+                j++;
             }
         }
         return res;

@@ -48,9 +48,9 @@ class Solution{
         // add your code here
         Arrays.sort(arr);
         Arrays.sort(dep);
-        int res = 1;
-        int count = 1;
-        int i=1,j=0;
+        int res = 0;
+        int count = 0;
+        int i=0,j=0;
         while(i<n&&j<n){
             if(arr[i]<=dep[j]){
                 i++;

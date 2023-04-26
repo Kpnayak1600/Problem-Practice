@@ -36,30 +36,28 @@ class GFG
 
 
 class Solution{
-    class MyComparator implements Comparator<int[]>{
-        public int compare(int a[],int b[]){
-            return a[0]-b[0];
-        }
-    }
     public int[][] overlappedInterval(int[][] Intervals){
-        // Code here 
-        Arrays.sort(Intervals,new MyComparator());
-        List<int[]> res = new ArrayList<>(); 
-        int prev[] = Intervals[0];
+        // Code here // Code here
+        Arrays.sort(Intervals,new Comparator<int []>(){
+            public int compare(int[] a, int[] b){
+                return a[0]-b[0];
+            }
+        });
+        List<int[]> a = new ArrayList<>();
+        int [] prev = Intervals[0];
         for(int i=1;i<Intervals.length;i++){
-            int curr[] = Intervals[i];
-            if(curr[0]<=prev[1]){
-                prev[1] = Math.max(curr[1],prev[1]);
+            if(Intervals[i][0]<=prev[1]){
+                prev[1] = Math.max(Intervals[i][1],prev[1]);
             }else{
-                res.add(prev);
-                prev = curr;
+                a.add(prev);
+                prev = Intervals[i];
             }
         }
-        res.add(prev);
-        int [][] ans = new int[res.size()][2];
+        a.add(prev);
+        int ans[][] = new int[a.size()][2];
         int j=0;
-        for(int[] i : res){
-            ans[j++] = i;
+        for(int[] i:a){
+            ans[j++]=i;
         }
         return ans;
     }

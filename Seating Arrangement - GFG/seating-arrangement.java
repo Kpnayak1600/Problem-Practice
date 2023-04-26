@@ -35,8 +35,6 @@ class Solution {
             return true;
         }
         int count=0;
-        // count += m>1&&seats[0]==0&&seats[1]!=1?1:0;
-        // count += m>2&&seats[m-1]==0&&seats[m-2]!=1?1:0;
         if(m>1&&seats[0]==0&&seats[1]!=1){
             count++;
             seats[0]=1;
@@ -51,8 +49,6 @@ class Solution {
                 count++;
             }
         }
-     
-       // System.out.println(Arrays.toString(seats));
         return count>=n;
     }
 }

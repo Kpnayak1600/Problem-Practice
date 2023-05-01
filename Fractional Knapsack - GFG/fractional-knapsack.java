@@ -59,7 +59,7 @@ class Solution{
                 res += arr[i].value;
                 W-=arr[i].weight;
             }else{
-                res += ((double)W*arr[i].value)/arr[i].weight; 
+                res += (double)W*arr[i].value/arr[i].weight; 
                 break;
             }
         }

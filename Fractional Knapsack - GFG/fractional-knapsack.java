@@ -47,10 +47,9 @@ class Solution{
         // Your code here
         Arrays.sort(arr,new Comparator<Item>(){
             public int compare(Item a,Item b){
-                double A = (double)(a.value/a.weight);
-                double B = (double)(b.value/b.weight);
-                //return (int)(B-A);
-                return a.weight*b.value - a.value*b.weight;
+                double A = (double)a.value/a.weight;
+                double B = (double)b.value/b.weight;
+                return (B>A)?1:-1;
             }
         });
         double res = 0;

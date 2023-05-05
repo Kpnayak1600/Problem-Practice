@@ -37,26 +37,38 @@ class GFG
 
 //User function Template for Java
 
+
+
+//User function Template for Java
+
+
+
+//User function Template for Java
+
 class Solution{
-    static Boolean isSubsetSum(int n, int arr[], int k){
+    static Boolean isSubsetSum(int N, int arr[], int sum){
         // code here
-        boolean dp[][]= new boolean[n+1][k+1];
-        for(int i=0; i<n; i++){
-            dp[i][0] = true;
-        }
-        if(arr[0]<=k)
-            dp[0][arr[0]] = true;
-        for(int ind = 1; ind<n; ind++){
-            for(int target= 1; target<=k; target++){
-                
-                boolean notTaken = dp[ind-1][target];
-        
-                boolean taken = false;
-                    if(arr[ind]<=target)
-                        taken = dp[ind-1][target-arr[ind]];
-                dp[ind][target]= notTaken||taken;
+        boolean dp[][]= new boolean[N+1][sum+1];
+        for(int i=0;i<N+1;i++){
+            for(int j=0;j<sum+1;j++){
+                if(i==0){
+                    dp[i][j]=false;
+                }
+                if(j==0){
+                    dp[i][j]=true;
+                }
+                if(i>0&&j>0){
+                    //take
+                    boolean take = false;
+                    if(j>=arr[i-1]){
+                        take = dp[i-1][j-arr[i-1]];
+                    }
+                    // not take
+                    boolean ntake = dp[i-1][j];
+                    dp[i][j] = take||ntake;
+                }
             }
         }
-    return dp[n-1][k];
+        return dp[N][sum];
     }
 }

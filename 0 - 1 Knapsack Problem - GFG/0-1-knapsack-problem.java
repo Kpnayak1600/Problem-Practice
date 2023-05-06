@@ -46,29 +46,31 @@ class gfg
 // } Driver Code Ends
 
 
-
-
-
-
 class Solution { 
-    //Function to return max value that can be put in knapsack of capacity W.
     static int knapSack(int W, int wt[], int val[], int n) { 
-         // your code here 
-         int []prev = new  int [W+1];
-         for(int i=1;i<n+1;i++){
-             int []cur = new int [W+1];
-             for(int j=1;j<W+1;j++){
-                     // take
-                     int take = 0;
-                     if(j>=wt[i-1]){
-                         take = val[i-1]+prev[j-wt[i-1]];
-                     }
-                     // not take
-                     int ntake = prev[j];
-                     cur[j] = Math.max(take,ntake);
-                 }
-                 prev = cur;
-         } 
-         return prev[W];
+         int dp[][] = new int [n+1][W+1];
+         for(int[] i : dp){
+             Arrays.fill(i,-1);
+         }
+         knapSackHelper(W,wt,val,n,dp);
+         return dp[n][W];
     } 
+    static int knapSackHelper(int W,int []wt,int val[],int n,int[][]dp){
+        if(W==0 ||n==0){
+            return 0;
+        }
+        if(dp[n][W]!=-1){
+            return dp[n][W];
+        }
+        // take 
+        int take = 0;
+        if(W>=wt[n-1]){
+            take = val[n-1]+knapSackHelper(W-wt[n-1],wt,val,n-1,dp);
+        }
+        // not take
+        int ntake = knapSackHelper(W,wt,val,n-1,dp);
+        return dp[n][W] = Math.max(take,ntake);
+    }
 }
+
+

@@ -46,34 +46,29 @@ class gfg
 // } Driver Code Ends
 
 
+
+
+
+
 class Solution { 
     //Function to return max value that can be put in knapsack of capacity W.
     static int knapSack(int W, int wt[], int val[], int n) { 
-        int dp[][] = new int[W+1][n+1];
-        for(int [] i : dp){
-            Arrays.fill(i,-1);
-        }
-        knapSackHelper(W,wt,val,n,dp);
-        // for(int [] i : dp){
-        //     System.out.println(Arrays.toString(i));
-        // }
-        return dp[W][n];
+         // your code here 
+         int []prev = new  int [W+1];
+         for(int i=1;i<n+1;i++){
+             int []cur = new int [W+1];
+             for(int j=1;j<W+1;j++){
+                     // take
+                     int take = 0;
+                     if(j>=wt[i-1]){
+                         take = val[i-1]+prev[j-wt[i-1]];
+                     }
+                     // not take
+                     int ntake = prev[j];
+                     cur[j] = Math.max(take,ntake);
+                 }
+                 prev = cur;
+         } 
+         return prev[W];
     } 
-    static int knapSackHelper(int W,int wt[],int val[],int n,int[][] dp){
-        if(n==0 || W ==0){
-            return 0;
-        }
-        if(dp[W][n]!=-1){
-            return dp[W][n];
-        }
-        // take
-        int take =0;
-        if(W>=wt[n-1]){
-            take = val[n-1]+knapSackHelper(W-wt[n-1],wt,val,n-1,dp);
-        }
-        int ntake = knapSackHelper(W,wt,val,n-1,dp);
-        return dp[W][n] = Math.max(take,ntake);
-    }
 }
-
-

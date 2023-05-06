@@ -47,30 +47,29 @@ class gfg
 
 
 class Solution { 
-    static int knapSack(int W, int wt[], int val[], int n) { 
-         int dp[][] = new int [n+1][W+1];
-         for(int[] i : dp){
-             Arrays.fill(i,-1);
-         }
-         knapSackHelper(W,wt,val,n,dp);
-         return dp[n][W];
+    static int knapSack(int W, int wt[], int val[], int n){ 
+        int[][] dp = new int[n+1][W+1];
+        for(int i=0;i<n+1;i++){
+            for(int j=0;j<W+1;j++){
+                // Base condition of recursion
+                if(i==0||j==0){
+                    dp[i][j]=0;
+                }
+                // logical part of recursion
+                if(i>0&&j>0){
+                    // take
+                    int take = 0;
+                    if(j>=wt[i-1]){
+                        take = val[i-1]+dp[i-1][j-wt[i-1]];
+                    }
+                    // not take
+                    int ntake = dp[i-1][j];
+                    dp[i][j] = Math.max(take,ntake);
+                }
+            }
+        }
+        return dp[n][W];
     } 
-    static int knapSackHelper(int W,int []wt,int val[],int n,int[][]dp){
-        if(W==0 ||n==0){
-            return 0;
-        }
-        if(dp[n][W]!=-1){
-            return dp[n][W];
-        }
-        // take 
-        int take = 0;
-        if(W>=wt[n-1]){
-            take = val[n-1]+knapSackHelper(W-wt[n-1],wt,val,n-1,dp);
-        }
-        // not take
-        int ntake = knapSackHelper(W,wt,val,n-1,dp);
-        return dp[n][W] = Math.max(take,ntake);
-    }
 }
 
 

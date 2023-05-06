@@ -35,29 +35,24 @@ class GFG
 
 class Solution{
     static Boolean isSubsetSum(int N, int arr[], int sum){
-        boolean [][] dp = new boolean[N+1][sum+1];
-        for(int i=0;i<N+1;i++){
-            for(int j=0;j<sum+1;j++){
-                // Base case of recursion
-                if(i==0){
-                    dp[i][j] = false;
-                }
-                if(j==0){
-                    dp[i][j] = true;
-                }
+        boolean[]prev = new boolean[sum+1];
+        prev[0] = true;
+        for(int i=1;i<N+1;i++){
+            boolean[]cur = new boolean[sum+1];
+            cur[0]=true;
+            for(int j=1;j<sum+1;j++){
                 // logic of recursion
-                if(i>0 && j>0){
-                    // take
-                    boolean take=false;
-                    if(j>=arr[i-1]){
-                        take = dp[i-1][j-arr[i-1]]; 
-                    }
-                    // ntake
-                    boolean ntake = dp[i-1][j];
-                    dp[i][j] = take||ntake;
+                // take
+                boolean take=false;
+                if(j>=arr[i-1]){
+                    take = prev[j-arr[i-1]]; 
                 }
+                // ntake
+                boolean ntake = prev[j];
+                cur[j] = take||ntake;
             }
+            prev = cur;
         }
-        return dp[N][sum];
+        return prev[sum];
     }
 }

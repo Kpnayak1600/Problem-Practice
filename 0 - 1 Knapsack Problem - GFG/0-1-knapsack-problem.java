@@ -55,6 +55,9 @@ class Solution {
         prev[0] = 0; 
         for(int i=1;i<n+1;i++){
             int cur[] = new int[W+1];
+             // Base condition of recursion
+            // no need to write as in java array is initialised with 0
+            // if other than 0 is to fill as base case then we hava to initialise with that
             cur[0] =0;
             for(int j=1;j<W+1;j++){
                 // logical part of recursion

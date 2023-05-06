@@ -48,27 +48,28 @@ class gfg
 
 class Solution { 
     static int knapSack(int W, int wt[], int val[], int n){ 
-        int[][] dp = new int[n+1][W+1];
-        for(int i=0;i<n+1;i++){
-            for(int j=0;j<W+1;j++){
-                // Base condition of recursion
-                if(i==0||j==0){
-                    dp[i][j]=0;
-                }
+        int prev[] = new int[W+1];
+        // Base condition of recursion
+        // no need to write as in java array is initialised with 0
+        // if other than 0 is to fill as base case then we hava to initialise with that
+        prev[0] = 0; 
+        for(int i=1;i<n+1;i++){
+            int cur[] = new int[W+1];
+            cur[0] =0;
+            for(int j=1;j<W+1;j++){
                 // logical part of recursion
-                if(i>0&&j>0){
-                    // take
-                    int take = 0;
-                    if(j>=wt[i-1]){
-                        take = val[i-1]+dp[i-1][j-wt[i-1]];
-                    }
-                    // not take
-                    int ntake = dp[i-1][j];
-                    dp[i][j] = Math.max(take,ntake);
+                // take
+                int take = 0;
+                if(j>=wt[i-1]){
+                    take = val[i-1]+prev[j-wt[i-1]];
                 }
+                // not take
+                int ntake = prev[j];
+                cur[j] = Math.max(take,ntake);
             }
+            prev = cur;
         }
-        return dp[n][W];
+        return prev[W];
     } 
 }
 

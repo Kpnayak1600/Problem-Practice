@@ -27,34 +27,30 @@ class GfG
 
 class Solution{
 	public int minDifference(int arr[], int n) { 
-	    // Your code goes here
 	    int sum =0;
 	    for(int i=0;i<n;i++){
 	        sum +=arr[i];
 	    }
-	    boolean dp[][] = new boolean[n+1][sum+1];
-	    for(int i=0;i<n+1;i++){
-	        for(int j=0;j<sum+1;j++){
-	            if(j==0){
-	                dp[i][j]=true;
-	            }else if(i==0){
-	                dp[i][j]=false;
-	            }
-	            if(i>0 && j>0){
-	                // take
-	                boolean take = false;
-	                if(j>=arr[i-1]){
-	                    take = dp[i-1][j-arr[i-1]];
-	                }
-	                // not take
-	                boolean ntake = dp[i-1][j];
-	                dp[i][j] = take||ntake;
- 	            }
+	    boolean prev [] = new boolean[sum+1];
+	    prev[0] = true;
+	    for(int i=1;i<n+1;i++){
+	        boolean cur[] = new boolean[sum+1];
+	        cur[0] = true;
+	        for(int j=1;j<sum+1;j++){
+                // take
+                boolean take = false;
+                if(j>=arr[i-1]){
+                    take = prev[j-arr[i-1]];
+                }
+                // not take
+                boolean ntake = prev[j];
+                cur[j] = take||ntake;
 	        }
+	        prev=cur;
 	    }
 	    ArrayList<Integer> a = new ArrayList<>();
-	    for(int i=0;i<dp[0].length;i++){
-	        if(dp[n][i]){
+	    for(int i=0;i<prev.length;i++){
+	        if(prev[i]){
 	            a.add(i);
 	        }
 	    }

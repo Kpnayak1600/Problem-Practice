@@ -60,7 +60,8 @@ class Solution{
 	    }
 	    int diff = Integer.MAX_VALUE;
 	    for(int i=0;i<=a.size()/2;i++){
-	        diff = Math.min(diff,Math.abs((sum-a.get(i))-a.get(i)));
+	        // (sum-a.get(i))-a.get(i)) = sum - 2*a.get(i)
+	        diff = Math.min(diff,Math.abs(sum-2*a.get(i)));
 	    }
 	    return diff;
 	} 

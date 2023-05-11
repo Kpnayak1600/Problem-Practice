@@ -29,37 +29,28 @@ class GFG
 
 //User function Template for Java
 
-
-
-//User function Template for Java
-
 class Solution{
-    int ans=0;
-    int solve(String s1,String s2,int n,int m,int[][] dp){
-        if(n==0||m==0){
-            return 0;
-        }
-        if(dp[n][m]!=-1){
-            return dp[n][m];
-        }
-        int count=0;
-        if(s1.charAt(n-1)==s2.charAt(m-1)){
-            count=1+solve(s1,s2,n-1,m-1,dp);
-            ans=Math.max(ans,count);
-        }
-        solve(s1,s2,n-1,m,dp);
-        solve(s1,s2,n,m-1,dp);
-        return dp[n][m]=count;
-       
-    }
-    int longestCommonSubstr(String s1, String s2, int n, int m){
+    int longestCommonSubstr(String S1, String S2, int n, int m){
         // code here
-        int dp[][]=new int[n+1][m+1];
-        for(int[] arr:dp)
-        {
-            Arrays.fill(arr,-1);
+        int dp[][] = new int[n+1][m+1];
+        int ans = 0;
+        for(int i=0;i<n+1;i++){
+            for(int j=0;j<m+1;j++){
+                if(i==0||j==0){
+                    dp[i][j]=0;
+                }
+                if(i>0 && j>0){
+                    // Matched
+                    if(S1.charAt(i-1)==S2.charAt(j-1)){
+                        dp[i][j] = 1+dp[i-1][j-1];
+                        ans = Math.max(ans,dp[i][j]);
+                    }else{
+                        // not matched
+                        dp[i][j] = 0;
+                    }
+                }
+            }
         }
-        solve(s1,s2,n,m,dp);
         return ans;
     }
 }

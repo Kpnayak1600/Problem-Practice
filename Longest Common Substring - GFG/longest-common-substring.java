@@ -32,21 +32,22 @@ class GFG
 class Solution{
     int longestCommonSubstr(String S1, String S2, int n, int m){
         // code here
-        int prev [] = new int [m+1];
+        int arr [] = new int [m+1];
+        // base case for arr array is fill prev arr
+        // by zero but in java by default a array is filled with 0
+        // so no need to fill manually
         int ans = 0;
         for(int i=1;i<n+1;i++){
-            int cur[] = new int[m+1];
-            for(int j=1;j<m+1;j++){
+            for(int j=m;j>0;j--){
                 // Matched
                 if(S1.charAt(i-1)==S2.charAt(j-1)){
-                    cur[j] = 1+prev[j-1];
-                    ans = Math.max(ans,cur[j]);
+                    arr[j] = 1+arr[j-1];
+                    ans = Math.max(ans,arr[j]);
                 }else{
                     // not matched
-                    cur[j] = 0;
+                    arr[j] = 0;
                 }
             }
-            prev = cur;
         }
         return ans;
     }

@@ -27,25 +27,23 @@ class GFG
 
 class Solution{
     public int LongestRepeatingSubsequence(String str){
-        int dp[][] = new int [str.length()+1][str.length()+1];
-        for(int i[]:dp){
-            Arrays.fill(i,-1);
+       int dp[][] = new int [str.length()+1][str.length()+1];
+        for(int i=0;i<str.length()+1;i++){
+            for(int j=0;j<str.length()+1;j++){
+                if(i==0||j==0){
+                    dp[i][j] = 0;
+                }
+                if(i>0 && j>0){
+                    // matched
+                    if(i!=j && str.charAt(i-1)==str.charAt(j-1)){
+                        dp[i][j] = 1+dp[i-1][j-1];
+                    }else{
+                        //not matched
+                        dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]);
+                    }
+                }
+            }
         }
-        return helper(str,str,str.length(),str.length(),dp);
-    }
-   int helper(String text1,String text2,int t1,int t2,int[][]dp){
-        if(t1==0||t2==0){
-            return 0;
-        }
-        if(dp[t1][t2]!=-1){
-            return dp[t1][t2];
-        }
-        // matched
-        if(t1!=t2 && text1.charAt(t1-1)==text2.charAt(t2-1)){
-            return dp[t1][t2] = 1+helper(text1,text2,t1-1,t2-1,dp);
-        }else{
-            // not matched
-            return dp[t1][t2] = Math.max(helper(text1,text2,t1-1,t2,dp),helper(text1,text2,t1,t2-1,dp));
-        }
+        return dp[str.length()][str.length()];
     }
 }

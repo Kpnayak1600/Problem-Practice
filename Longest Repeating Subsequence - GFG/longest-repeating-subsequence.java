@@ -27,23 +27,34 @@ class GFG
 
 class Solution{
     public int LongestRepeatingSubsequence(String str){
-       int dp[][] = new int [str.length()+1][str.length()+1];
-        for(int i=0;i<str.length()+1;i++){
-            for(int j=0;j<str.length()+1;j++){
-                if(i==0||j==0){
-                    dp[i][j] = 0;
-                }
-                if(i>0 && j>0){
-                    // matched
-                    if(i!=j && str.charAt(i-1)==str.charAt(j-1)){
-                        dp[i][j] = 1+dp[i-1][j-1];
-                    }else{
-                        //not matched
-                        dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]);
-                    }
+       // we always prev array for each row so size
+        // of prev array must be the size of row
+        // here i hv taken length of string text 2 as size of row
+        int prev[] = new int[str.length()+1];
+        // for prev array as a base case we need to fill
+        // 0 in the array but since in java all array
+        // is by default initialised by 0 so no need
+        // to fill again
+        for(int i=1;i<str.length()+1;i++){
+            // we always prev array for each row so size
+            // of prev array must be the size of row
+            // here i hv taken length of string text 2 as size of row
+            int cur[] = new int[str.length()+1];
+            // for prev array as a base case we need to fill
+            // 0 in the array but since in java all array
+            // is by default initialised by 0 so no need
+            // to fill again
+            for(int j=1;j<str.length()+1;j++){
+                // matched
+                if(i!=j && str.charAt(i-1)==str.charAt(j-1)){
+                    cur[j] = 1+prev[j-1];
+                }else{
+                    //not matched
+                    cur[j] = Math.max(prev[j],cur[j-1]);
                 }
             }
+            prev = cur;
         }
-        return dp[str.length()][str.length()];
+        return prev[str.length()];
     }
 }

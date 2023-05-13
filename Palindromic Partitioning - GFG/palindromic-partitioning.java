@@ -48,6 +48,9 @@ class Solution{
         return dp[i][j]=ans;
     }
     static boolean isPalindrome(String str,int i,int j){
+        if(i>j||i==j){
+            return true;
+        }
         while(i<j){
             if(str.charAt(i)!=str.charAt(j)){
                 return false;

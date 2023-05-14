@@ -23,21 +23,33 @@ class GFG{
 
 //User function Template for Java
 
+
+
+//User function Template for Java
+
+
+
+//User function Template for Java
+
 class Solution{
     static int countWays(int N, String S){
-        // code here
         int dp[][][] = new int[N+1][N+1][2];
         for(int i[][]:dp){
             for(int j[]:i){
                 Arrays.fill(j,-1);
             }
         }
+        // last prameter of helper() function is 
+        // keep track of true or false i.e 1-> true
+        // 0 - false;
         return helper(S,0,N-1,1,dp);
     }
     static int helper(String S,int i,int j,int isTrue,int dp[][][]){
+        // Base case if empty string
         if(i>j){
             return 0;
         }
+        // Base case if string has one char
         if(i==j){
             if(isTrue==1){
                 return S.charAt(i)=='T'?1:0;

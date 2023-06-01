@@ -29,29 +29,22 @@ public class Main {
 
 
 
-
-
 class Solution {
     int findMaxSum(int arr[], int n) {
         int dp[] = new int[n];
-        Arrays.fill(dp,-1);
-        return solve(arr,n-1,dp);
-    }
-    int solve(int[]arr,int n,int[]dp){
-        if(n<0){
-            return 0;
+        dp[0] = arr[0];
+        for(int i=1;i<n;i++){
+            // pick 
+            int pick = arr[i];
+            if(i>1){
+                pick += dp[i-2];
+            }
+            // not pick
+            int nPick = dp[i-1];
+            dp[i] = Math.max(pick,nPick);
         }
-        if(dp[n]!=-1){
-            return dp[n];
-        }
-        // pick 
-        int pick = arr[n]; 
-        // pick further if possible
-        if(n>1){
-            pick += solve(arr,n-2,dp);
-        }
-        // not pick 
-        int nPick = solve(arr,n-1,dp);
-        return dp[n]=Math.max(pick,nPick);
+        return dp[n-1];
     }
 }
+
+

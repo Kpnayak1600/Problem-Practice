@@ -45,7 +45,10 @@ class Solution {
             return dp[n];
         }
         // pick 
-        int pick = solve(arr,n-2,dp)+arr[n];
+        int pick = arr[n];
+        if(n>1){
+            pick = solve(arr,n-2,dp)+arr[n];
+        }
         // not pick 
         int nPick = solve(arr,n-1,dp);
         return dp[n]=Math.max(pick,nPick);

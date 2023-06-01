@@ -27,24 +27,25 @@ public class Main {
 }
 // } Driver Code Ends
 
-
-
 class Solution {
     int findMaxSum(int arr[], int n) {
         int dp[] = new int[n];
-        dp[0] = arr[0];
+        int prev1 = arr[0];
+        int prev2 = 0;
         for(int i=1;i<n;i++){
             // pick 
             int pick = arr[i];
             if(i>1){
-                pick += dp[i-2];
+                pick += prev2;
             }
             // not pick
-            int nPick = dp[i-1];
-            dp[i] = Math.max(pick,nPick);
+            int nPick = prev1;
+            prev2 = prev1;
+            prev1 = Math.max(pick,nPick);
         }
-        return dp[n-1];
+        return prev1;
     }
 }
+
 
 

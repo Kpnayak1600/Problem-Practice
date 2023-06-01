@@ -28,11 +28,11 @@ public class Main {
 // } Driver Code Ends
 
 
-//User function Template for Java
+
+
 
 class Solution {
     int findMaxSum(int arr[], int n) {
-        // code here
         int dp[] = new int[n];
         Arrays.fill(dp,-1);
         return solve(arr,n-1,dp);
@@ -45,9 +45,10 @@ class Solution {
             return dp[n];
         }
         // pick 
-        int pick = arr[n];
+        int pick = arr[n]; 
+        // pick further if possible
         if(n>1){
-            pick = solve(arr,n-2,dp)+arr[n];
+            pick += solve(arr,n-2,dp);
         }
         // not pick 
         int nPick = solve(arr,n-1,dp);

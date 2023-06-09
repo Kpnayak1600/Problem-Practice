@@ -7,6 +7,7 @@ class GFG
 	public static void main(String[] args) throws IOException
 	{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter out=new PrintWriter(System.out);
         int t = Integer.parseInt(br.readLine().trim());
         while(t-->0)
         {
@@ -15,16 +16,19 @@ class GFG
             List<String> ans = obj.find_permutation(S);
             for( int i = 0; i < ans.size(); i++)
             {
-                System.out.print(ans.get(i)+" ");
+                out.print(ans.get(i)+" ");
             }
-            System.out.println();
+            out.println();
                         
         }
+        out.close();
 	}
 }
 
 
 // } Driver Code Ends
+
+
 
 
 class Solution {

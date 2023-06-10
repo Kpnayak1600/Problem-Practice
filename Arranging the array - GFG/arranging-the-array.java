@@ -14,15 +14,14 @@ class GFG {
             Integer.parseInt(br.readLine().trim()); // Inputting the testcases
         while(t-->0)
         {
-            long n = Long.parseLong(br.readLine().trim());
-            long a[] = new long[(int)(n)];
-            // long getAnswer[] = new long[(int)(n)];
+            int n = Integer.parseInt(br.readLine().trim());
+            int a[] = new int[n];
             String inputLine[] = br.readLine().trim().split(" ");
             for (int i = 0; i < n; i++) {
-                a[i] = Long.parseLong(inputLine[i]);
+                a[i] = Integer.parseInt(inputLine[i]);
             }
             
-            Compute obj = new Compute();
+            Solution obj = new Solution();
             obj.Rearrange(a, n);
             
             StringBuilder output = new StringBuilder();
@@ -40,20 +39,30 @@ class GFG {
 
 //User function Template for Java
 
-class Compute {
-    public void Rearrange(long arr[], long n){
-        // Your code goes here
-        long temp[] = arr.clone();
-        int k=0;
+class Solution {
+    
+    public void Rearrange(int a[], int n)
+    {
+        ArrayList<Integer> neg = new ArrayList<>();
+        ArrayList<Integer> pos = new ArrayList<>();
+        
         for(int i=0;i<n;i++){
-            if(temp[i]<0)   {
-                arr[k++] =temp[i];
+            if(a[i] < 0){
+                neg.add(a[i]);
+            }
+            else{
+                pos.add(a[i]);
             }
         }
-        for(int i=0;i<n;i++){
-            if(temp[i]>=0)   {
-                arr[k++] =temp[i];
-            }
+        
+        for(int i=0;i<neg.size();i++){
+            a[i] = neg.get(i);
+        }
+        
+        int counter = 0;
+        for(int i=neg.size();i<n;i++){
+            a[i] = pos.get(counter);
+            counter++;
         }
     }
 }

@@ -4,21 +4,29 @@ import java.util.*;
 
 class RodCutting {
 
-    public static void main(String args[]) {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
+    public static void main(String args[])throws IOException {
+        BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter out=new PrintWriter(System.out);
+        
+        int t = Integer.parseInt(in.readLine().trim());
         while (t-- > 0) {
-            int n = sc.nextInt();
+            int n = Integer.parseInt(in.readLine().trim());
+            String s[]=in.readLine().trim().split(" ");
             int[] arr = new int[n];
-            for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
+            for (int i = 0; i < n; i++) arr[i] = Integer.parseInt(s[i]);
 
             Solution ob = new Solution();
-            System.out.println(ob.cutRod(arr, n));
+            out.println(ob.cutRod(arr, n));
         }
+        out.close();
     }
 }
 
 // } Driver Code Ends
+
+
+
+
 
 
 class Solution{
@@ -26,24 +34,22 @@ class Solution{
         return helper(price,price.length,n);
     }
     int helper(int[]price,int ind,int len){
-        int[][]dp = new int[ind+1][len+1];
-        for(int i=0;i<ind+1;i++){
-            for(int j=0;j<len+1;j++){
-                if(i==0 || j==0){
-                    dp[i][j] = 0;
+        int arr[] = new int[len+1];
+        // in arr we need 0 element as base case
+        // in java every array is initiated with 0 
+        // so need to write code for base case
+        for(int i=1;i<ind+1;i++){
+            for(int j=1;j<len+1;j++){
+                // take 
+                int take = Integer.MIN_VALUE;
+                if(j>=i){
+                    take = price[i-1]+arr[j-i];
                 }
-                if(i>0&&j>0){
-                    // take 
-                    int take = Integer.MIN_VALUE;
-                    if(j>=i){
-                        take = price[i-1]+dp[i][j-i];
-                    }
-                    // not take
-                    int ntake = dp[i-1][j];
-                    dp[i][j] = Math.max(take,ntake);
-                }
+                // not take
+                int ntake = arr[j];
+                arr[j] = Math.max(take,ntake);
             }
         }
-        return dp[ind][len];
+        return arr[len];
     }
 }

@@ -20,13 +20,15 @@ class Main {
 
 
 class Solution {
-
     void printNos(int N) {
-        // code here
-        if(N==0){
+        f(1,N);
+    }
+    void f(int i,int N){
+        if(i>N){
             return;
         }
-        System.out.print(N+" ");
-        printNos(N-1);
+        f(i+1,N);
+        // Backtracking
+        System.out.print(i+" ");
     }
 }

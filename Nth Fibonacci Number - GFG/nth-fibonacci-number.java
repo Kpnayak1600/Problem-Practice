@@ -25,16 +25,13 @@ class Solution {
     static long nthFibonacci(long n){
         // code here
         long dp[] = new long [(int)n+1];
-        Arrays.fill(dp,-1);
-        return nthFibonacciHelper(n,dp);
-    }
-    static long nthFibonacciHelper(long n,long[]dp){
-        if(n<=2){
-            return 1;
+        for(int i=0;i<n+1;i++){
+            if(i<=2){
+                dp[i]=1;
+            }else{
+                dp[i] = (dp[i-1]+dp[i-2])%1000000007;
+            }
         }
-        if(dp[(int)n]!=-1){
-            return dp[(int)n];
-        }
-        return dp[(int)n] = (nthFibonacciHelper(n-1,dp)+nthFibonacciHelper(n-2,dp))%1000000007;
+        return dp[(int)n];
     }
 }

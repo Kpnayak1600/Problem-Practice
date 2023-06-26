@@ -24,14 +24,13 @@ class GFG {
 class Solution {
     static long nthFibonacci(long n){
         // code here
-        long dp[] = new long [(int)n+1];
-        for(int i=0;i<n+1;i++){
-            if(i<=2){
-                dp[i]=1;
-            }else{
-                dp[i] = (dp[i-1]+dp[i-2])%1000000007;
-            }
+        int prev1 = 1;
+        int prev2 = 1;
+        for(int i=3;i<n+1;i++){
+            int cur = (prev1+prev2)%1000000007;
+            prev2 = prev1;
+            prev1 = cur;
         }
-        return dp[(int)n];
+        return prev1;
     }
 }

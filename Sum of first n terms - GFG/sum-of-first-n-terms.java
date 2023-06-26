@@ -25,9 +25,13 @@ class GFG {
 class Solution {
     long sumOfSeries(long N) {
         // code here
+        long sum =0;
+        return helper(sum,N);
+    }
+    long helper(long sum,long N){
         if(N==0){
-            return 0;
+            return sum;
         }
-        return (long)Math.pow(N,3) + sumOfSeries(N-1);
+        return helper(sum+(long)Math.pow(N,3),N-1);
     }
 }

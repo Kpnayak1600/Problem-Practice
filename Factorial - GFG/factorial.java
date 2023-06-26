@@ -22,9 +22,12 @@ class GFG
 class Solution{
     static long factorial(int N){
         // code here
+        return factorialHelper(1,N);
+    }
+    static long factorialHelper(long fact ,int N){
         if(N==0){
-            return 1;
+            return fact;
         }
-        return N*factorial(N-1);
+        return factorialHelper(fact*N,N-1);
     }
 }

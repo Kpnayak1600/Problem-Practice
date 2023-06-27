@@ -43,41 +43,34 @@ class GFG {
 //User function Template for Java
 
 class Solution{
-    static class Mycomparator implements Comparator<ArrayList<Integer>>{
-        public int compare(ArrayList<Integer> p,ArrayList<Integer> q){   
-            int oneSize = p.size();
-            int twoSize = q.size();
-            for(int i = 0; i < Math.min(oneSize,twoSize); i++){
-                if(i == oneSize || i == twoSize)
-                    return oneSize - twoSize;
-                int elementOne = p.get(i);
-                int elementTwo = q.get(i);
-                if(elementOne == elementTwo)
-                   continue;
-                return Integer.compare(elementOne, elementTwo);
-            }
-            return p.size()-q.size();
-        }
-    }
-    static void solve(ArrayList<Integer> A,ArrayList<ArrayList<Integer>> res,ArrayList<Integer> ds,int i){
-        if(i==A.size()){
-            res.add(new ArrayList<>(ds));
-            return;
-        }
-        //take
-        ds.add(A.get(i));
-        solve(A,res,ds,i+1);
-        ds.remove(ds.size()-1);
-        //not take
-        solve(A,res,ds,i+1);
-        return;
-    }
     public static ArrayList<ArrayList<Integer>> subsets(ArrayList<Integer> A){
         //code here
-        ArrayList<ArrayList<Integer>>res = new ArrayList<>();
-        ArrayList<Integer> ds = new ArrayList<>();
-        solve(A,res,ds,0);
-        Collections.sort(res,new Mycomparator());
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        ArrayList<Integer> temp = new ArrayList<>();
+        subsetsHelper(A,res,temp,0);
+        Collections.sort(res,new Comparator<ArrayList<Integer>>(){
+            public int compare(ArrayList<Integer>a,ArrayList<Integer>b){
+                for(int i=0;i<a.size()&&i<b.size();i++){
+                    if(a.get(i)!=b.get(i)){
+                        return a.get(i)-b.get(i);
+                    }
+                }
+                return a.size()-b.size();
+            }    
+        });
         return res;
+    }
+    static void subsetsHelper(ArrayList<Integer>A,ArrayList<ArrayList<Integer>> res,ArrayList<Integer>temp,int i){
+        if(i>A.size()-1){
+            res.add(new ArrayList<>(temp));
+            temp = new ArrayList<>();
+            return;
+        }
+        // take 
+        temp.add(A.get(i));
+        subsetsHelper(A,res,temp,i+1);
+        temp.remove(temp.size()-1);
+        // not take
+        subsetsHelper(A,res,temp,i+1);
     }
 }

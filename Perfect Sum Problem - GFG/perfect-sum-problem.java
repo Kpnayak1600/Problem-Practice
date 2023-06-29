@@ -29,31 +29,23 @@ class Solution{
 	public int perfectSum(int arr[],int n, int sum) { 
 	    // Your code goes here
 	   int dp[][] = new int[n+1][sum+1];
-	   for(int i[]:dp){
-	       Arrays.fill(i,-1);
+	   for(int i=0;i<n+1;i++){
+	       for(int j=0;j<sum+1;j++){
+	           if(i==0&&j==0){
+	               dp[i][j] = 1;
+	           }
+	           if(i>0){
+	               // take
+	               int take = 0;
+	               if(j>=arr[i-1]){
+	                   take = dp[i-1][j-arr[i-1]];
+	               }
+	               // not take
+	               int ntake = dp[i-1][j];
+	               dp[i][j] = (take+ntake)%1000000007;
+	           }
+	       }
 	   }
-	   return perfectSumHelper(arr,n,sum,dp);
+	   return dp[n][sum];
 	} 
-	int perfectSumHelper(int[] arr,int n,int sum,int [][]dp){
-	   if(n==1){
-	        if(sum==0 && arr[n-1]==0){
-	            return 2;
-	        }
-	        if(sum==0 || arr[n-1]==sum){
-	            return 1;
-	        }
-	        return 0;
-	    }
-	    if(dp[n][sum]!=-1){
-	        return dp[n][sum];
-	    }
-	    // take
-	    int take = 0;
-	    if(sum>=arr[n-1]){
-	        take = perfectSumHelper(arr,n-1,sum-arr[n-1],dp);
-	    }
-	    // not take
-	    int ntake = perfectSumHelper(arr,n-1,sum,dp);
-	    return dp[n][sum] = (take + ntake)%1000000007;
-	}
 }

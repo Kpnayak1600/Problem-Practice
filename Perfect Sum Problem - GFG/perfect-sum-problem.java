@@ -35,7 +35,7 @@ class Solution{
 	   return perfectSumHelper(arr,n,sum,dp);
 	} 
 	int perfectSumHelper(int[] arr,int n,int sum,int [][]dp){
-	    if(n==1){
+	   if(n==1){
 	        if(sum==0 && arr[n-1]==0){
 	            return 2;
 	        }

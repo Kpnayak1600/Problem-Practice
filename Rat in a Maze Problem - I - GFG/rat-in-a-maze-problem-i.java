@@ -28,10 +28,6 @@ class Rat {
 }
 // } Driver Code Ends
 
-
-// User function Template for Java
-
-// m is the given matrix and n is the order of matrix
 class Solution {
     public static ArrayList<String> findPath(int[][] m, int n) {
         // Your code here
@@ -50,31 +46,15 @@ class Solution {
             res.add(temp);
             return;
         }
-        m[i][j] =0;
+        m[i][j] =0; // visited path can be traversed once
         // go up
-        //if(i>0&& m[i-1][j]==1){
-            //temp+="U";
-            findPathHelper(m,N,res,temp+"U",i-1,j);
-            //temp=temp.substring(0,temp.length());
-        //}
+        findPathHelper(m,N,res,temp+"U",i-1,j);
         // go down
-        //if(i<N-1&& m[i+1][j]==1){
-            //temp+="D";
-            findPathHelper(m,N,res,temp+"D",i+1,j);
-            //temp=temp.substring(0,temp.length());
-       // }
+        findPathHelper(m,N,res,temp+"D",i+1,j);
         // go left
-       // if(j>0&& m[i][j-1]==1){
-            //temp+="L";
-            findPathHelper(m,N,res,temp+"L",i,j-1);
-            //temp=temp.substring(0,temp.length());
-       // }
+        findPathHelper(m,N,res,temp+"L",i,j-1);
         // go right
-        //if(j<N-1&& m[i][j+1]==1){
-            //temp+="R";
-            findPathHelper(m,N,res,temp+"R",i,j+1);
-            //temp=temp.substring(0,temp.length());
-       // }
-        m[i][j]=1;
+        findPathHelper(m,N,res,temp+"R",i,j+1);
+        m[i][j]=1; 
     }
 }

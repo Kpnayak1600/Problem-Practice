@@ -37,20 +37,33 @@ class GFG{
 class Solution{
     static ArrayList<ArrayList<Integer>> nQueen(int n) {
         // code here
-        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        Set<ArrayList<Integer>> res = new TreeSet<>(new Comparator<ArrayList<Integer>>(){
+            public int compare(ArrayList<Integer>a,ArrayList<Integer>b){
+                for(int i=0;i<a.size();i++){
+                    if(a.get(i)!=b.get(i)){
+                        return a.get(i)-b.get(i);
+                    }
+                }
+                return 0;
+            }
+        });
         int[][] grid = new int[n][n];
         nQueenHelper(res,grid,0);
-        return res;
+        ArrayList<ArrayList<Integer>>ans = new ArrayList<>();
+        for(ArrayList<Integer>i:res){
+            ans.add(new ArrayList<>(i));
+        }
+        return ans;
     }
-    static void nQueenHelper(ArrayList<ArrayList<Integer>>res,int[][] grid,int row){
-        if(row==grid[0].length){
+    static void nQueenHelper(Set<ArrayList<Integer>>res,int[][] grid,int col){
+        if(col==grid[0].length){
             res.add(possibleSolution(grid));
             return ;
         }
-        for(int col=0;col<grid.length;col++){
+        for(int row=0;row<grid.length;row++){
             if(isValid(row,col,grid)){
                 grid[row][col] = 1;
-                nQueenHelper(res,grid,row+1);
+                nQueenHelper(res,grid,col+1);
                 grid[row][col] = 0;
             }
         }
@@ -63,16 +76,16 @@ class Solution{
                 return false;
             }
         }
-        i=row;
-        while(i>=0){
-            if(grid[i--][col]==1){
+        j=col;
+        while(j>=0){
+            if(grid[row][j--]==1){
                 return false;
             }
         }
         i=row;
         j=col;
-        while(i>=0 && j<grid.length){
-            if(grid[i--][j++]==1){
+        while(i<grid.length && j>=0){
+            if(grid[i++][j--]==1){
                 return false;
             }
         }

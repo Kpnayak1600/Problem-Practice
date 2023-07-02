@@ -49,12 +49,9 @@ class Solution{
         }
         // take char+space
         if(ind != S.length()-1){
-            temp+=S.charAt(ind)+" ";
-            permutationHelper(S,res,temp,ind+1);
-            temp=temp.substring(0,temp.length()-2);
+            permutationHelper(S,res,temp+S.charAt(ind)+" ",ind+1);
         }
         // take char
-        temp+=S.charAt(ind);
-        permutationHelper(S,res,temp,ind+1);
+        permutationHelper(S,res,temp+S.charAt(ind),ind+1);
     }
 }

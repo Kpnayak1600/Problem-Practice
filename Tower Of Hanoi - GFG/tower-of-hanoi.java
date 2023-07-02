@@ -43,7 +43,7 @@ class Hanoi {
         }
         long l = toh(N-1,from,aux,to);
         System.out.println("move disk "+N+" from rod "+from+" to rod "+ to);
-        long r =1+toh(N-1,aux,to,from);
+        long r = 1+toh(N-1,aux,to,from);
         return l+r;
     }
 }

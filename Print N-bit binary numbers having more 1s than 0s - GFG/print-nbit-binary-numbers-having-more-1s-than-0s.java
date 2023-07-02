@@ -26,30 +26,20 @@ class GFG {
 //User function Template for Java
 
 class Solution {
-    void solve(ArrayList<String>res,int N,int one,int zero,String temp){
-        if(N==0){
-            res.add(temp);
-            return;
-        }
-        //take one
-        temp +="1";
-        solve(res,N-1,one+1,zero,temp);
-        // not take one
-        temp = temp.substring(0,temp.length()-1);
-        if(one>zero){
-            // take zero
-            temp +="0";
-            solve(res,N-1,one,zero+1,temp);
-            // not take zero
-            temp = temp.substring(0,temp.length()-1);
-        }
-        return;
-    }
     ArrayList<String> NBitBinary(int N) {
         // code here
         ArrayList<String> res = new ArrayList<>();
-        String temp = "";
-        solve(res,N,0,0,temp);
+        Helper(res,"",0,0,N);
         return res;
+    }
+    void Helper(ArrayList<String> res,String temp,int countOne,int countZero,int n){
+        if(countOne+countZero==n){
+            res.add(temp);
+            return;
+        }
+        Helper(res,temp+"1",countOne+1,countZero,n);
+        if(countOne>countZero){
+            Helper(res,temp+"0",countOne,countZero+1,n);
+        }
     }
 }

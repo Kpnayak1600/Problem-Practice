@@ -33,13 +33,13 @@ class Solution {
         return res;
     }
     void Helper(ArrayList<String> res,String temp,int countOne,int countZero,int n){
-        if(countOne+countZero==n){
+        if(n==0){
             res.add(temp);
             return;
         }
-        Helper(res,temp+"1",countOne+1,countZero,n);
+        Helper(res,temp+"1",countOne+1,countZero,n-1);
         if(countOne>countZero){
-            Helper(res,temp+"0",countOne,countZero+1,n);
+            Helper(res,temp+"0",countOne,countZero+1,n-1);
         }
     }
 }

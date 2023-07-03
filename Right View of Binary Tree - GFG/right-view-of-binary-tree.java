@@ -133,27 +133,22 @@ class Solution{
     ArrayList<Integer> rightView(Node node) {
         //add code here.
         ArrayList<Integer> res = new ArrayList<>();
-        if(node == null){
-            return res;
-        }
-        Queue<Node> q = new LinkedList<>();
-        q.add(node);
-        while(!q.isEmpty()){
-            int size  = q.size();
-            for(int i=0;i<size;i++){
-                Node cur = q.poll();
-                if(i==size-1){
-                    res.add(cur.data);
-                }
-                if(cur.left!=null){
-                    q.add(cur.left);
-                }
-                if(cur.right!=null){
-                    q.add(cur.right);
-                }
-            }
-        }
+        helper(node,res,1);
         return res;
+    }
+    int maxLevel = 0;
+    void helper(Node node,ArrayList<Integer>res,int currentLevel){
+        if(node == null){ 
+            return ;
+        }
+        if(maxLevel<currentLevel){
+            res.add(node.data);
+            maxLevel=currentLevel;
+        }
+        // go right
+        helper(node.right,res,currentLevel+1);
+        // go left
+        helper(node.left,res,currentLevel+1);
     }
 }
 

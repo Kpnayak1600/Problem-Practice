@@ -111,40 +111,43 @@ class GfG {
 
 
 class Solution{
-    //Function to find the vertical order traversal of Binary Tree.
+    static class pair{
+        int d;
+        Node node;
+        pair(int d,Node node){
+            this.d = d;
+            this.node = node;
+        }
+    }
     static ArrayList <Integer> verticalOrder(Node root){
-        // add your code here
-        Map<Integer,Map<Integer,ArrayList<Integer>>> mp = new TreeMap<>();
-        helper(root,mp,0,0);
+        Map<Integer,ArrayList<Integer>> mp = new TreeMap<>();
+        Queue<pair> q = new LinkedList<>();
+        q.add(new pair(0,root));
+        while(!q.isEmpty()){
+            pair cur = q.poll();
+            if(mp.containsKey(cur.d)){
+                mp.get(cur.d).add(cur.node.data);
+            }else{
+                ArrayList<Integer> a = new ArrayList<>();
+                a.add(cur.node.data);
+                mp.put(cur.d,a);
+            }
+            if(cur.node.left!=null){
+                q.add(new pair(cur.d-1,cur.node.left));
+            }
+            if(cur.node.right!=null){
+                q.add(new pair(cur.d+1,cur.node.right));
+            }
+        }
         ArrayList<Integer> res = new ArrayList<>();
-        //System.out.println(mp);
-        //System.out.println(mp.values());
-        for(Map<Integer,ArrayList<Integer>>i : mp.values()){
-            for(ArrayList<Integer> x : i.values()){
-                for(Integer n:x){
-                    res.add(n);
-                }
+       //System.out.println(mp);
+        for(ArrayList<Integer>i : mp.values()){
+            for(Integer x : i){
+                res.add(x);
             }
         }
         return res;
     }
-    static void helper(Node root,Map<Integer,Map<Integer,ArrayList<Integer>>> mp,int d,int level){
-        if(root==null){
-            return;
-        }
-        if(!mp.containsKey(d)){
-            mp.put(d,new TreeMap<Integer,ArrayList<Integer>>());
-        }
-        if(mp.get(d).containsKey(level)){
-            mp.get(d).get(level).add(root.data);
-        }else{
-            ArrayList<Integer> a = new ArrayList<>();
-            a.add(root.data);
-            mp.get(d).put(level,a);
-        }
-        // go left
-        helper(root.left,mp,d-1,level+1);
-        // go right
-        helper(root.right,mp,d+1,level+1);
-    }
 }
+
+

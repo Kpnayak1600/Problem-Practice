@@ -123,24 +123,7 @@ class pair{
 class Solution{
     public ArrayList <Integer> verticalSum(Node root) {
         Map<Integer,ArrayList<Integer>> mp = new TreeMap<>();
-        Queue<pair> q = new LinkedList<>();
-        q.add(new pair(0,root));
-        while(!q.isEmpty()){
-            pair cur = q.poll();
-            if(mp.containsKey(cur.d)){
-                mp.get(cur.d).add(cur.node.data);
-            }else{
-                ArrayList<Integer> a = new ArrayList<>();
-                a.add(cur.node.data);
-                mp.put(cur.d,a);
-            }
-            if(cur.node.left!=null){
-                q.add(new pair(cur.d-1,cur.node.left));
-            }
-            if(cur.node.right!=null){
-                q.add(new pair(cur.d+1,cur.node.right));
-            }
-        }
+        helper(root,mp,0);
         ArrayList<Integer> res = new ArrayList<>();
         //System.out.println(mp);
         int sum =0;
@@ -152,6 +135,22 @@ class Solution{
             sum=0;
         }
         return res;
+    }
+    void helper(Node root,Map<Integer,ArrayList<Integer>>mp,int d){
+        if(root==null){
+            return;
+        }
+        if(mp.containsKey(d)){
+            mp.get(d).add(root.data);
+        }else{
+            ArrayList<Integer> a = new ArrayList<>();
+            a.add(root.data);
+            mp.put(d,a);
+        }
+        // go left
+        helper(root.left,mp,d-1);
+        // go right
+        helper(root.right,mp,d+1);
     }
 }
 

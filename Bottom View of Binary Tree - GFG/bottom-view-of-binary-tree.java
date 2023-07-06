@@ -116,48 +116,41 @@ class GfG {
 
 //User function Template for Java
 
-class pair{
-    int d;
-    Node node;
-    pair(int d,Node node){
-        this.d = d;
-        this.node = node;
-    }
-}
-    
 
-class Solution{
+class Solution
+{
     //Function to return a list containing the bottom view of the given tree.
     public ArrayList <Integer> bottomView(Node root){
-       Map<Integer,ArrayList<Integer>> mp = new TreeMap<>();
-        Queue<pair> q = new LinkedList<>();
-        q.add(new pair(0,root));
-        while(!q.isEmpty()){
-            pair cur = q.poll();
-            if(mp.containsKey(cur.d)){
-                mp.get(cur.d).add(cur.node.data);
-            }else{
-                ArrayList<Integer> a = new ArrayList<>();
-                a.add(cur.node.data);
-                mp.put(cur.d,a);
-            }
-            if(cur.node.left!=null){
-                q.add(new pair(cur.d-1,cur.node.left));
-            }
-            if(cur.node.right!=null){
-                q.add(new pair(cur.d+1,cur.node.right));
-            }
-        }
-        ArrayList<Integer> res = new ArrayList<>();
-        //System.out.println(mp);
-        for(ArrayList<Integer>i : mp.values()){
-            int k=0;
-            for(Integer x : i){
-                if(k++ == i.size()-1){
-                    res.add(x);
+        Map<Integer,Map<Integer,Integer>> mp = new TreeMap<>();
+            helper(root,mp,0,0);
+            ArrayList<Integer> res = new ArrayList<>();
+           // System.out.println(mp);
+            for(Map<Integer,Integer>i : mp.values()){
+                int count = 0;
+                for(Integer x : i.values()){
+                    if(count++ == i.size()-1){
+                        res.add(x);
+                    }
                 }
             }
-        }
         return res;
+    }
+    static void helper(Node root,Map<Integer,Map<Integer,Integer>> mp,int d,int level){
+        if(root==null){
+            return;
+        }
+        if(!mp.containsKey(d)){
+            mp.put(d,new TreeMap<Integer,Integer>());
+        }
+        //if(mp.get(d).containsKey(level)){
+          //  System.out.println(mp.get(d).get(level));
+            //mp.get(d).get(level) = root.data;
+        //}else{
+            mp.get(d).put(level,root.data);
+        //}
+        // go left
+        helper(root.left,mp,d-1,level+1);
+        // go right
+        helper(root.right,mp,d+1,level+1);
     }
 }

@@ -142,12 +142,7 @@ class Solution
         if(!mp.containsKey(d)){
             mp.put(d,new TreeMap<Integer,Integer>());
         }
-        //if(mp.get(d).containsKey(level)){
-          //  System.out.println(mp.get(d).get(level));
-            //mp.get(d).get(level) = root.data;
-        //}else{
-            mp.get(d).put(level,root.data);
-        //}
+        mp.get(d).put(level,root.data);
         // go left
         helper(root.left,mp,d-1,level+1);
         // go right

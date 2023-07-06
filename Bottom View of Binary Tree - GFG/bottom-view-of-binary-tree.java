@@ -116,32 +116,37 @@ class GfG {
 
 //User function Template for Java
 
-class Solution{
-    static class Pair{
-       int hd;
-       Node node;
-       public Pair(int hd,Node node){
-           this.hd=hd;
-           this.node=node;
-       }
-   }
-    public ArrayList <Integer> bottomView(Node root){
-        Map<Integer,Integer> map = new TreeMap<>();
-        ArrayList<Integer> res = new ArrayList<>();
-        Queue<Pair> q = new LinkedList<>();
-        q.add(new Pair(0,root));
-        while(!q.isEmpty()){
-            Pair p = q.poll();
-            Node cur = p.node;
-            map.put(p.hd,p.node.data);
-            if(cur.left!=null) q.add(new Pair(p.hd-1,cur.left));
-            if(cur.right!=null) q.add(new Pair(p.hd+1,cur.right));
+class pair{
+        int level;
+        int val;
+        pair(int level,int data){
+            this.level=level;
+            this.val=data;
         }
-        for(Integer i : map.values()){
-            res.add(i);
+    }
+class Solution{
+    public ArrayList <Integer> bottomView(Node root){
+       Map<Integer,pair> mp = new TreeMap<>();
+        helper(root,mp,0,0);
+        ArrayList<Integer> res = new ArrayList<>();
+        for(pair p : mp.values()){
+            res.add(p.val);
         }
         return res;
     }
+    static void helper(Node root,Map<Integer,pair>mp,int d,int level){
+        if(root == null){
+            return;
+        }
+        if(!mp.containsKey(d)){
+            mp.put(d,new pair(level,root.data));
+        }
+        if(mp.get(d).level<=level){
+            mp.put(d,new pair(level,root.data));
+        }
+        // go left
+        helper(root.left,mp,d-1,level+1);
+        // go right
+        helper(root.right,mp,d+1,level+1);
+    }
 }
-
- 

@@ -116,36 +116,32 @@ class GfG {
 
 //User function Template for Java
 
-
-class Solution
-{
-    //Function to return a list containing the bottom view of the given tree.
+class Solution{
+    static class Pair{
+       int hd;
+       Node node;
+       public Pair(int hd,Node node){
+           this.hd=hd;
+           this.node=node;
+       }
+   }
     public ArrayList <Integer> bottomView(Node root){
-        Map<Integer,Map<Integer,Integer>> mp = new TreeMap<>();
-            helper(root,mp,0,0);
-            ArrayList<Integer> res = new ArrayList<>();
-           // System.out.println(mp);
-            for(Map<Integer,Integer>i : mp.values()){
-                int count = 0;
-                for(Integer x : i.values()){
-                    if(count++ == i.size()-1){
-                        res.add(x);
-                    }
-                }
-            }
+        Map<Integer,Integer> map = new TreeMap<>();
+        ArrayList<Integer> res = new ArrayList<>();
+        Queue<Pair> q = new LinkedList<>();
+        q.add(new Pair(0,root));
+        while(!q.isEmpty()){
+            Pair p = q.poll();
+            Node cur = p.node;
+            map.put(p.hd,p.node.data);
+            if(cur.left!=null) q.add(new Pair(p.hd-1,cur.left));
+            if(cur.right!=null) q.add(new Pair(p.hd+1,cur.right));
+        }
+        for(Integer i : map.values()){
+            res.add(i);
+        }
         return res;
     }
-    static void helper(Node root,Map<Integer,Map<Integer,Integer>> mp,int d,int level){
-        if(root==null){
-            return;
-        }
-        if(!mp.containsKey(d)){
-            mp.put(d,new TreeMap<Integer,Integer>());
-        }
-        mp.get(d).put(level,root.data);
-        // go left
-        helper(root.left,mp,d-1,level+1);
-        // go right
-        helper(root.right,mp,d+1,level+1);
-    }
 }
+
+ 

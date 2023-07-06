@@ -142,13 +142,6 @@ class Solution{
         q.add(new pair(0,root));
         while(!q.isEmpty()){
             pair cur = q.poll();
-            // if(mp.containsKey(cur.d)){
-            //     mp.get(cur.d).add(cur.node.data);
-            // }else{
-            //     ArrayList<Integer> a = new ArrayList<>();
-            //     a.add(cur.node.data);
-            //     mp.put(cur.d,a);
-            // }
             if(!mp.containsKey(cur.d)){
                 mp.put(cur.d,cur.node.data);
             }

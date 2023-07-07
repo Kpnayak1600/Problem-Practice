@@ -113,10 +113,14 @@ class Solution{
 	    if(node == null){
 	        return res;
 	    }
+	    // adding node value
 	    res.add(node.data);
+	    // left boundary
 	    left(node.left,res);
+	    // leaf boundary
 	    leaf(node.left,res);
 	    leaf(node.right,res);
+	    // right boundary
 	    right(node.right,res);
 	    return res;
 	}

@@ -125,16 +125,15 @@ class Solution{
 	    return res;
 	}
 	void left(Node node,ArrayList<Integer>res){
-	    if(node ==null){
-	       return; 
-	    }
-	    if(!isLeaf(node)){
-	        res.add(node.data);
-	    }
-	    if(node.left!=null){
-	        left(node.left,res);
-	    }else{
-	        left(node.right,res);
+	    while(node!=null){
+	        if(!isLeaf(node)){
+	            res.add(node.data);
+	        }
+	        if(node.left!=null){
+	            node = node.left;
+	        }else{
+                node = node.right;
+	        }
 	    }
 	}
 	void leaf(Node node,ArrayList<Integer>res){
@@ -148,17 +147,22 @@ class Solution{
 	    leaf(node.right,res);
 	}
 	void right(Node node,ArrayList<Integer>res){
-	    if(node == null){
-	        return;
+	    List<Integer> temp = new ArrayList<>();
+	    while(node!=null){
+	        if(!isLeaf(node)){
+	            temp.add(node.data);
+	        }
+	        if(node.right!=null){
+	            node = node.right;
+	        }else{
+	            node  = node.left;
+	        }
 	    }
-	    if(node.right!=null){
-	        right(node.right,res);
-	    }else{
-	        right(node.left,res);
+	    for(int j=temp.size()-1;j>=0;j--){
+	        res.add(temp.get(j));
 	    }
-	    if(!isLeaf(node)){
-	        res.add(node.data);
-	    }
+	}
+	void reverse(ArrayList<Integer>res,int i,int j){
 	}
 	boolean isLeaf(Node node){
 	    return node.left==null && node.right==null;

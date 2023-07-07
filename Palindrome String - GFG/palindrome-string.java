@@ -25,15 +25,13 @@ class GFG {
 class Solution {
     int isPalindrome(String S) {
         // code here
-        return isPalindromeHelper(S,0,S.length()-1);
-    }
-    int isPalindromeHelper(String s ,int i,int j){
-        if(i>j){
-            return 1;
+        int i=0;
+        int j=S.length()-1;
+        while(i<j){
+            if(S.charAt(i++)!=S.charAt(j--)){
+                return 0;
+            }
         }
-        if(s.charAt(i)!=s.charAt(j)){
-            return 0;
-        }
-        return isPalindromeHelper(s,i+1,j-1);
+        return 1;
     }
 };

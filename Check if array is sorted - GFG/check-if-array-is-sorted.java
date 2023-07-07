@@ -32,8 +32,12 @@ import java.io.*;
 class Solution {
     boolean arraySortedOrNot(int[] arr, int n) {
         // code here
-        if(n == 1) return true;
-        if(arr[n-1]<arr[n-2]) return false; 
+        if(n==1){
+            return true;
+        }
+        if(arr[n-1]<arr[n-2]){
+            return false;
+        }
         return arraySortedOrNot(arr,n-1);
     }
 }

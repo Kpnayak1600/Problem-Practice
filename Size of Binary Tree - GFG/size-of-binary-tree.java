@@ -111,6 +111,9 @@ class GfG {
 /*Complete The Function Below*/
 class Tree{
 	public static int getSize(Node root){
+	    if(root == null){
+	        return 0;
+	    }
         Queue<Node> q = new LinkedList<>();
         q.add(root);
         int res = 0;

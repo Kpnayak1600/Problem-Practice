@@ -111,13 +111,19 @@ class GfG {
 /*Complete The Function Below*/
 class Tree{
 	public static int getSize(Node root){
-        if(root == null){
-            return 0;
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        int res = 0;
+        while(!q.isEmpty()){
+            res++;
+            Node cur = q.poll();
+            if(cur.left!=null){
+                q.add(cur.left);
+            }
+            if(cur.right!=null){
+                q.add(cur.right);
+            }
         }
-        // go left 
-        int left = 1+getSize(root.left);
-        // go right
-        int right = getSize(root.right);
-        return left+right;
+        return res;
     }
 }

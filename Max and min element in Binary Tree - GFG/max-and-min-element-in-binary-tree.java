@@ -114,36 +114,30 @@ class Node {
 class Solution{
     public static int findMax(Node root){
         //code here
-        int res = Integer.MIN_VALUE;
-        Queue<Node> q = new LinkedList<>();
-        q.add(root);
-        while(!q.isEmpty()){
-            Node cur = q.poll();
-            res = Math.max(res,cur.data);
-            if(cur.left!=null){
-                q.add(cur.left);
-            }
-            if(cur.right!=null){
-                q.add(cur.right);
-            }
+        if(root==null){
+            return Integer.MIN_VALUE;
         }
-        return res;
+        if(root.left==null && root.right==null){
+            return root.data;
+        }
+        // go left 
+        int left = Math.max(root.data,findMax(root.left));
+        // go right
+        int right = Math.max(root.data,findMax(root.right));
+        return Math.max(left,right);
     }
     public static int findMin(Node root){
         //code here
-        int res = Integer.MAX_VALUE;
-        Queue<Node> q = new LinkedList<>();
-        q.add(root);
-        while(!q.isEmpty()){
-            Node cur = q.poll();
-            res = Math.min(res,cur.data);
-            if(cur.left!=null){
-                q.add(cur.left);
-            }
-            if(cur.right!=null){
-                q.add(cur.right);
-            }
+        if(root==null){
+            return Integer.MAX_VALUE;
         }
-        return res;
+        if(root.left==null && root.right==null){
+            return root.data;
+        }
+        // go left 
+        int left = Math.min(root.data,findMin(root.left));
+        // go right
+        int right = Math.min(root.data,findMin(root.right));
+        return Math.min(left,right);
     }
 }

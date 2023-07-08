@@ -117,9 +117,6 @@ class Solution{
         if(root==null){
             return Integer.MIN_VALUE;
         }
-        if(root.left==null && root.right==null){
-            return root.data;
-        }
         // go left 
         int left = Math.max(root.data,findMax(root.left));
         // go right
@@ -131,9 +128,7 @@ class Solution{
         if(root==null){
             return Integer.MAX_VALUE;
         }
-        if(root.left==null && root.right==null){
-            return root.data;
-        }
+
         // go left 
         int left = Math.min(root.data,findMin(root.left));
         // go right

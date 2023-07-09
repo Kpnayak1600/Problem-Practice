@@ -6,19 +6,24 @@ import java.util.*;
 
 class Solution{
     //Function to find the smallest positive number missing from the array.
-    static int missingNumber(int arr[], int size){
-        // Your code here
-        HashSet<Integer>s = new HashSet<>();
-        for(int i=0;i<size;i++){
-            s.add(arr[i]);
-        }
-        for(int i=1;i<=size;i++){
-            if(!s.contains(i)){
-                return i;
+    static int missingNumber(int nums[], int n){
+        int i=0;
+        while(i<nums.length){
+            if(nums[i]>0 && nums[i]<n && nums[i]!=nums[nums[i]-1]){
+                int temp = nums[i];
+                nums[i] = nums[temp-1];
+                nums[temp-1] = temp;
+            }else{
+                i++;
             }
         }
-        return size+1;
-    }
+        for(i=0;i<n;i++){
+            if(nums[i]!=i+1){
+                return i+1;
+            }
+        }
+        return n+1;
+    } 
 }
 
 

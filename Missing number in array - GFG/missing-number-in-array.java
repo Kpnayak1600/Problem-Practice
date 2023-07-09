@@ -28,18 +28,28 @@ class GFG {
 // User function Template for Java
 
 class Solution {
-    int missingNumber(int arr[], int x) {
+    int missingNumber(int nums[], int x) {
         // Your Code Here
-        int n = arr.length;
-        for(int i=0;i<n;i++){
-            while(arr[i]<n && arr[i]!=arr[arr[i]-1]){
-               int temp = arr[i];
-               arr[i]=arr[temp-1];
-               arr[temp-1] = temp;
+        int n = nums.length;
+        // for(int i=0;i<n;i++){
+        //     while(arr[i]<n && arr[i]!=arr[arr[i]-1]){
+        //       int temp = arr[i];
+        //       arr[i]=arr[temp-1];
+        //       arr[temp-1] = temp;
+        //     }
+        // }
+        int i=0;
+        while(i<nums.length){
+            if(nums[i]<n&&nums[i]!=nums[nums[i]-1]){
+                int temp = nums[i];
+                nums[i] = nums[temp-1];
+                nums[temp-1] = temp;
+            }else{
+                i++;
             }
         }
-        for(int i=0;i<n;i++){
-            if(arr[i]!=i+1){
+        for(i=0;i<n;i++){
+            if(nums[i]!=i+1){
                 return i+1;
             }
         }

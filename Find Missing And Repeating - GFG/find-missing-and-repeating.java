@@ -30,30 +30,25 @@ class GFG {
 // User function Template for Java
 
 class Solve {
-    int[] findTwoElement(int arr[], int n) {
+    int[] findTwoElement(int nums[], int n) {
         // code here
-        int temp[] = new int[2];
         int i=0;
-        while(i<n){
-            if(arr[i]!=arr[arr[i]-1]){
-                int temp1 = arr[i];
-                arr[i] = arr[temp1-1];
-                arr[temp1-1] = temp1;
+        while(i<nums.length){
+            if(nums[i]!=nums[nums[i]-1]){
+                int temp = nums[i];
+                nums[i] = nums[temp-1];
+                nums[temp-1] = temp;
             }else{
                 i++;
             }
         }
+        int temp [] = new int[2];
         for(i=0;i<n;i++){
-            if(arr[i]!=(i+1)){
-                temp[0]=arr[i];
-                temp[1] = (i+1);
+            if(nums[i]!=i+1){
+                temp[0] = nums[i];
+                temp[1] = i+1;
             }
         }
-        //System.out.println(Arrays.toString(arr));
         return temp;
     }
 }
-
-// 47
-// 13 33 43 16 25 19 23 31 29 35 10 2 32 11 47 15 34 46 30 26 41 18 5 17 37 39 6
-// 4 20 27 9 3 8 40 24 44 14 36 7 38 12 1 42 12 28 22 45

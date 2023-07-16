@@ -46,6 +46,7 @@ class InorderPostorderToTree {
 // } Driver Code Ends
 
 
+
 /* Tree node structure
 class Node
 {
@@ -65,21 +66,24 @@ class GfG{
     int index;
     Node buildTree(int in[], int post[], int n) {
         index = n-1;
-        Map<Integer,Integer>mp = new HashMap<>();
-        for(int i=0;i<n;i++){
-            mp.put(in[i],i);
-        }
-        return helper(in,post,0,n-1,mp);
+        return helper(in,post,0,n-1);
     }
-    Node helper(int[]inorder,int[]postorder,int is,int ie,Map<Integer,Integer>mp){
-        if(index<0||is>ie){
+    Node helper(int[]inorder,int[]postorder,int is,int ie){
+        if(is>ie){
             return null;
         }
         Node root = new Node(postorder[index--]);
+        int ind = 0;
+        for(int i=is;i<=ie;i++){
+            if(inorder[i]==root.data){
+                ind = i;
+                break;
+            }
+        }
         // go right
-        root.right = helper(inorder,postorder,mp.get(root.data)+1,ie,mp);
+        root.right = helper(inorder,postorder,ind+1,ie);
         // go left
-        root.left = helper(inorder,postorder,is,mp.get(root.data)-1,mp);
+        root.left = helper(inorder,postorder,is,ind-1);
         return root;
     }
 }

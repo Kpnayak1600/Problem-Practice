@@ -76,13 +76,6 @@ class GfG{
             return null;
         }
         Node root = new Node(postorder[index--]);
-        //int ind = 0;
-        // for(int i=is;i<=ie;i++){
-        //     if(inorder[i]==root.data){
-        //         ind = i;
-        //         break;
-        //     }
-        // }
         // go right
         root.right = helper(inorder,postorder,mp.get(root.data)+1,ie,mp);
         // go left

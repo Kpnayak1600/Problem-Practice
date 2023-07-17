@@ -27,22 +27,30 @@ class GFG
 
 
 class Solution {
-    public int minFlips(String S) {
+    public int minFlips(String str) {
         // Code here
-        int flips=0;
-        for(int i=0;i<S.length();i++){
-            if(i%2==0){
-                if(S.charAt(i)=='0'){
-                    flips++;
-                    
-                }
-            }
-            else if(i%2!=0){
-                if(S.charAt(i)=='1'){
-                    flips++;
-                }
-            }
+     return Math.min(getFlipWithStartingCharcter(str, '0'),
+               getFlipWithStartingCharcter(str, '1'));
+    }
+   int getFlipWithStartingCharcter(String str,
+                                    char expected)
+    {
+        int flipCount = 0;
+        for (int i = 0; i < str.length(); i++)
+        {
+            //  if current character is not expected,
+            // increase flip count
+            if (str.charAt(i) != expected)
+                flipCount++;
+      
+            //  flip expected character each time
+            expected = flip(expected);
         }
-        return(Math.min(flips,S.length()-flips));
+        return flipCount;
+    }
+      
+  public static char flip(char ch)
+    {
+        return (ch == '0') ? '1' : '0';
     }
 }

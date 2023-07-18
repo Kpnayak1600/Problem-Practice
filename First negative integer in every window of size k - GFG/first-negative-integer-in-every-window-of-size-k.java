@@ -45,30 +45,28 @@ class GFG {
 
 class Compute {
     public long[] printFirstNegativeInteger(long A[], int N, int K){
-        long [] ans = new long[N-K+1];
-        Deque<Long> dq = new LinkedList<>();
-        int i=0,j=0;
+        long res[] = new long[N-K+1];
+        Deque<Long>dq = new LinkedList<>();
+        int t=0;
+        int i=0;
+        int j=0;
         while(j<N){
-            // calculation
             if(A[j]<0){
                 dq.add(A[j]);
             }
-            if(j-i+1 < K){
-                j++;
-            }else if(j-i+1 == K) {
-                // find ans
+            if(j-i+1 == K){
                 if(dq.size()==0){
-                    ans[i]=0;
+                    res[t++]=0;
                 }else{
-                    ans[i]=dq.peek();
+                    res[t++]=dq.peek();
                 }
-                // remove calculation
                 if(dq.size()!=0 && dq.peek()==A[i]){
                     dq.poll();
                 }
-                j++;i++;
+                i++;
             }
+            j++;
         }
-        return ans;
+        return res;
     }
 }

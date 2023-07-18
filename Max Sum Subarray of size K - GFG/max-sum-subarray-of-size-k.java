@@ -42,15 +42,13 @@ class Solution{
         long temp = 0;
         while(j<N){
             temp += Arr.get(j);
-            if(j-i+1 < K){
-                j++;
-            }else if(j-i+1 == K){
+            if(j-i+1 == K){
                 // System.out.println(temp);
                 res = Math.max(temp,res);
                 temp-=Arr.get(i);
                 i++;
-                j++;
             }
+            j++;
         }
         return res;
     }

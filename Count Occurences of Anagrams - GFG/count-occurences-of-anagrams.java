@@ -34,7 +34,6 @@ class Solution {
         for(int i=0;i<pt;i++){
             arr[pat.charAt(i)-'a']++;
         }
-        ///System.out.println(Arrays.toString(arr));
         int temp = pt;
         int i=0;
         int j=0;
@@ -44,7 +43,6 @@ class Solution {
             if(pat.contains(c+"")){
                 arr[c-'a']--;
                 temp = arr[c-'a']>=0?temp-1:temp;
-                //System.out.println(arr[c-'a'] +" "+temp);
             }
             if(j-i+1 == pt){
                 if(temp==0){
@@ -60,7 +58,6 @@ class Solution {
             }
             j++;
         }
-        //System.out.println(temp);
         return res;
     }
 }

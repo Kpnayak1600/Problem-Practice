@@ -28,37 +28,39 @@ class GFG {
 class Solution {
     int search(String pat, String txt) {
         // code here
-        int i=0,j=0;
-        int np = pat.length();
         int nt = txt.length();
-        Map<Character,Integer> mp = new HashMap<>();
-        for(int k=0;k<np;k++){
-            mp.put(pat.charAt(k),mp.getOrDefault(pat.charAt(k),0)+1);
+        int pt = pat.length();
+        int arr[] = new int[26];
+        for(int i=0;i<pt;i++){
+            arr[pat.charAt(i)-'a']++;
         }
-        int count = mp.size();
+        ///System.out.println(Arrays.toString(arr));
+        int temp = pt;
+        int i=0;
+        int j=0;
         int res = 0;
         while(j<nt){
-            if(mp.containsKey(txt.charAt(j))){
-                mp.put(txt.charAt(j),mp.get(txt.charAt(j))-1);
-                if(mp.get(txt.charAt(j))==0){
-                    count--;
-                }
+            char c = txt.charAt(j);
+            if(pat.contains(c+"")){
+                arr[c-'a']--;
+                temp = arr[c-'a']>=0?temp-1:temp;
+                //System.out.println(arr[c-'a'] +" "+temp);
             }
-            if(j-i+1 < np){
-                j++;
-            }else if(j-i+1 == np){
-                if(count ==0){
+            if(j-i+1 == pt){
+                if(temp==0){
                     res++;
                 }
-                if(mp.containsKey(txt.charAt(i))){
-                    mp.put(txt.charAt(i),mp.get(txt.charAt(i))+1);
-                    if(mp.get(txt.charAt(i))==1){
-                        count++;
+                if(pat.contains(txt.charAt(i)+"")){
+                    arr[txt.charAt(i)-'a']++;
+                    if(arr[txt.charAt(i)-'a']>=1){
+                        temp++;
                     }
                 }
-                i++;j++;
+                i++;
             }
+            j++;
         }
+        //System.out.println(temp);
         return res;
     }
 }

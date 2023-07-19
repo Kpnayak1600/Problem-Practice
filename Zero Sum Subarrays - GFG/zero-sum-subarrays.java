@@ -36,22 +36,21 @@ class GFG {
 
 class Solution{
     //Function to count subarrays with sum equal to 0.
-    public static long findSubarray(long[] nums ,int n) 
-    {
+    public static long findSubarray(long[] arr ,int n) {
         //Your code here
-        long count=0;
-        Map<Long,Integer> s = new HashMap<>();
-        long presum=0;
-        for(int i=0;i<nums.length;i++){
-            presum+=nums[i];
-            if(presum==0){
-                count++;
+        Map<Integer,Integer>mp = new HashMap<>();
+        int res = 0;
+        int prefixsum = 0;
+        for(int i=0;i<n;i++){
+            prefixsum+=arr[i];
+            if(prefixsum==0){
+                res++;
             }
-            if(s.containsKey(presum)){
-                 count += s.get(presum-0);
+            if(mp.containsKey(prefixsum)){
+                res+=mp.get(prefixsum);
             }
-            s.put(presum,s.getOrDefault(presum,0)+1);
+            mp.put(prefixsum,mp.getOrDefault(prefixsum,0)+1);
         }
-        return count;
+        return res;
     }
 }

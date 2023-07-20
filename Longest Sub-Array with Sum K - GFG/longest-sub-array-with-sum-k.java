@@ -48,21 +48,21 @@ class Array {
 
 class Solution{
     // Function for finding maximum and value pair
-    public static int lenOfLongSubarr (int A[], int N, int K) {
+    public static int lenOfLongSubarr (int A[], int N, int k){
         //Complete the function
-        Map<Integer,Integer> mp = new HashMap<>();
-        int presum=0;
+        Map<Integer,Integer>mp = new HashMap<>();
+        int prefixsum = 0;
         int res = 0;
         for(int i=0;i<N;i++){
-            presum += A[i];
-            if(presum==K){
+            prefixsum += A[i];
+            if(prefixsum==k){
                 res = i+1;
             }
-            if(!mp.containsKey(presum)){
-                mp.put(presum,i);
+            if(mp.containsKey(prefixsum-k)){
+                res = Math.max(res,i-mp.get(prefixsum-k));
             }
-            if(mp.containsKey(presum-K)){
-                res = Math.max(res,i-mp.get(presum-K));
+            if(!mp.containsKey(prefixsum)){
+                mp.put(prefixsum,i);
             }
         }
         return res;

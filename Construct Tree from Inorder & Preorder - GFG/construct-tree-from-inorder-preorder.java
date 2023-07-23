@@ -51,29 +51,31 @@ class GFG
 // } Driver Code Ends
 
 
-class Solution{
-    static int index; 
-    public static Node buildTree(int inorder[], int preorder[], int n){
-        // code here 
-        index=0;
-        return helper(inorder,preorder,0,n-1);
-    }
-    static Node helper(int[]inorder,int[]preorder,int is,int ie){
-        if(is>ie){
-            return null;
-        }
-        Node root = new Node(preorder[index++]);
-        int ind = 0;
-        for(int i=is;i<=ie;i++){
-            if(inorder[i]==root.data){
-                ind = i;
-                break;
-            }
-        }
-        // go left
-        root.left = helper(inorder,preorder,is,ind-1);
-        // go right
-        root.right = helper(inorder,preorder,ind+1,ie);
-        return root;
-    }
+
+
+
+
+
+class Solution {
+    static int index;
+    public static Node buildTree(int in [], int pre[], int n) {
+      index = 0;
+      Node root = sub(pre,in, 0, n - 1); 
+      return root;
+  }
+  static Node sub(int pre[],int in[], int s, int e) {
+      if(index == pre .length ||s > e) return null;
+      Node root = new Node(pre[index++]);
+      int ind = 0;
+      for(int i=s;i<in.length;i++){
+          if(in[i]==root.data){
+              ind=i;
+              break;
+          }
+      }
+      root.left = sub(pre,in, s, ind- 1);
+      root.right = sub(pre,in, ind+ 1, e);
+      return root;
+  }
 }
+

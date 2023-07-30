@@ -32,30 +32,19 @@ public class Main {
 
 
 //User function Template for Java
-
-
-
-
 class Solution {
     void segregateEvenOdd(int arr[], int n) {
         // code here
         int i=0;
-        int j=n-1;
-        while(true){
-            while(arr[i]%2==0 && i<j){
-                i++;
+        for(int j=0;j<n;j++){
+            if(arr[j]%2==0){
+               int temp = arr[i];
+               arr[i] = arr[j];
+               arr[j] = temp;
+               i++;
             }
-            while(arr[j]%2!=0 && i<j){
-                j--;
-            }
-            if(i>=j){
-                break;
-            }
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
         }
         Arrays.sort(arr,0,i);
-        Arrays.sort(arr,i,arr.length);
+        Arrays.sort(arr,i,n);
     }
 }

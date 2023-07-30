@@ -36,12 +36,15 @@ class Solution {
     void segregateEvenOdd(int arr[], int n) {
         // code here
         int i=0;
-        for(int j=0;j<n;j++){
-            if(arr[j]%2==0){
-               int temp = arr[i];
-               arr[i] = arr[j];
-               arr[j] = temp;
-               i++;
+        int j=n-1;
+        while(i<=j){
+            if(arr[i]%2==0){
+                i++;
+            }else{
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                j--;
             }
         }
         Arrays.sort(arr,0,i);

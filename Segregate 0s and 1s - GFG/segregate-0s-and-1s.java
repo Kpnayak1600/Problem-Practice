@@ -37,21 +37,16 @@ class Solution {
     void segregate0and1(int[] arr, int n) {
         // code here
         int i=0;
-        int j= n-1;
-        while(true){
-            while(arr[i]==0 && i<j){
+        int j=n-1;
+        while(i<=j){
+            if(arr[i]==0){
                 i++;
-            }
-            while(arr[j]==1 && i<j){
+            }else{
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
                 j--;
             }
-            if(i>=j){
-                break;
-            }
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
         }
     }
-
 }

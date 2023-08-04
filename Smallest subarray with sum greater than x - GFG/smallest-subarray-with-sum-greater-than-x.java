@@ -44,9 +44,6 @@ class Solution {
         int sum = 0;
         int res = Integer.MAX_VALUE;
         while(j<n){
-            // if(arr[j]>s){
-            //     return 1;
-            // }
             sum+= arr[j];
             while(i<=j && sum>s){
                 res = Math.min(res,j-i+1);

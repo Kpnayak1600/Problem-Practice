@@ -34,15 +34,16 @@ class GfG
 
 //User function Template for Java
 
-class Solution{
-    public long findMinDiff (ArrayList<Integer> a, int n, int m){
+class Solution
+{
+    public long findMinDiff (ArrayList<Integer> a, int n, int m)
+    {
         // your code here
-        int i=0;
-        int j = m-1;
         Collections.sort(a);
-        long res =Integer.MAX_VALUE;
-        while(j<n){
-            res = Math.min(res,a.get(j++)-a.get(i++));
+        int res = Integer.MAX_VALUE;
+        int j=m-1;
+        for(int i=0;j<n;i++){
+            res = Math.min(res,a.get(j++)-a.get(i));
         }
         return res;
     }

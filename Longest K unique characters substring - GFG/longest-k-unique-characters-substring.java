@@ -34,10 +34,7 @@ class Solution {
             while(mp.size()>k){
                 char x = s.charAt(i);
                 mp.put(x,mp.get(x)-1);
-                // if(mp.containsKey(x)){
-                //     mp.put(x,mp.get(x)-1);
-                // }
-                if(mp.get(x)0){
+                if(mp.get(x)==0){
                     mp.remove(x);   
                 }
                 i++;

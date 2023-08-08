@@ -40,24 +40,21 @@ class Solution{
     // arr: input array
     // n is the size of array
     static int findFloor(long arr[], int n, long x){
-        int l =0;
-        int h =n-1;
+        int i=0;
+        int j=n-1;
         int res = -1;
-        while(l<=h){
-            int mid = l+(h-l)/2;
+        while(i<=j){
+            int mid = i+(j-i)/2;
             if(arr[mid]==x){
                 return mid;
             }else if(arr[mid]>x){
-                h = mid-1;
+                j=mid-1;
             }else{
-               
-                 res = mid;
-                l = mid+1;
+                i=mid+1;
+                res = mid;
             }
         }
         return res;
     }
     
 }
-// 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 
-// 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112

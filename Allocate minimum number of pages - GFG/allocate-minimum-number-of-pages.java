@@ -29,27 +29,11 @@ class GFG {
 // } Driver Code Ends
 
 
-//User function Template for Java
-
-
-
-//User function Template for Java
-
-
-
-//User function Template for Java
-
-
-
-//User function Template for Java
-
 class Solution {
     //Function to find minimum number of pages.
     static boolean isValid(int mid,int[] Arr,int M){
-                 int student = 1;
-
+        int student = 1;
         int sum =0;
-
         for(int i=0; i< Arr.length ; i++){
             if(Arr[i]>mid)return false;
             sum += Arr[i];
@@ -57,11 +41,8 @@ class Solution {
                 student++;
                 sum = Arr[i];
             }
-
         }
-
         if(student > M) return false;
-
         return true;
     }
     public static int findPages(int[]A,int N,int M){

@@ -31,6 +31,8 @@ class GFG {
 // } Driver Code Ends
 
 
+
+
 // User function Template for Java
 class Solution {
     static boolean isValid(int mid ,int []stalls,int k){
@@ -45,7 +47,7 @@ class Solution {
         return cows>=k;
     }
     public static int solve(int n, int k, int[] stalls) {
-        Arrays.sort(stalls);
+        //Arrays.sort(stalls);
         int i=0;
         int j=stalls[n-1]-stalls[0];
         //System.out.println(Arrays.toString(stalls)+" "+i+" "+j);

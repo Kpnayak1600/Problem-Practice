@@ -47,13 +47,13 @@ class Solution {
         return cows>=k;
     }
     public static int solve(int n, int k, int[] stalls) {
-        //Arrays.sort(stalls);
+        Arrays.sort(stalls);
         int i=0;
         int j=stalls[n-1]-stalls[0];
         //System.out.println(Arrays.toString(stalls)+" "+i+" "+j);
-       for(int r=1;r<stalls.length;r++){
-           i = Math.min(i,stalls[r]-stalls[r-1]);
-       }
+    //   for(int r=1;r<stalls.length;r++){
+    //       i = Math.min(i,stalls[r]-stalls[r-1]);
+    //   }
         int res = 0;
         while(i<=j){
             int mid = i+(j-i)/2;

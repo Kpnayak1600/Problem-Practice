@@ -28,23 +28,33 @@ class Main
 // } Driver Code Ends
 
 
+//User function Template for Java
+
 class Solution{
     //Function to find if there exists a triplet in the 
     //array A[] which sums up to X.
-    public static boolean find3Numbers(int A[], int n, int x) { 
+    public static boolean find3Numbers(int A[], int n, int X) { 
        // Your code Here
-       //Arrays.sort(A);
-       for(int i=0;i<n;i++){
-           if(find(x-A[i],A,i+1,n-1)){
-               return true;
-           }
-       }
-       return false;
+        //Arrays.sort(A);
+        for(int i=0;i<n;i++){
+            int sum = X-A[i];
+            // for(int j=i+1;j<n;j++){
+            //     if(s.contains(sum-A[j])){
+            //         return true;
+            //     }
+            //     s.add(A[j]);
+            // }
+            if(find(sum,i+1,n,A)){
+                return true;
+            }
+        }
+        
+        return false;
     }
-    static boolean find(int x,int[] A,int i,int j){
-        Set<Integer> s = new HashSet<>();
-        for(;i<=j;i++){
-            if(s.contains(x-A[i])){
+    static boolean find(int sum,int i,int j,int[]A){
+        Set<Integer>s  = new HashSet<>();
+        for(;i<j;i++){
+            if(s.contains(sum-A[i])){
                 return true;
             }
             s.add(A[i]);

@@ -35,20 +35,12 @@ class Solution{
     //array A[] which sums up to X.
     public static boolean find3Numbers(int A[], int n, int X) { 
        // Your code Here
-        //Arrays.sort(A);
         for(int i=0;i<n;i++){
             int sum = X-A[i];
-            // for(int j=i+1;j<n;j++){
-            //     if(s.contains(sum-A[j])){
-            //         return true;
-            //     }
-            //     s.add(A[j]);
-            // }
             if(find(sum,i+1,n,A)){
                 return true;
             }
         }
-        
         return false;
     }
     static boolean find(int sum,int i,int j,int[]A){

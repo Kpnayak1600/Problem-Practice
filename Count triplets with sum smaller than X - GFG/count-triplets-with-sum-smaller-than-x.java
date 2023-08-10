@@ -18,27 +18,27 @@ import java.util.*;
 
 class Solution{
     long countTriplets(long arr[], int n,int sum){
-        int count=0;
+        long count =0;
         Arrays.sort(arr);
         for(int i=0;i<n;i++){
-            if(arr[i]<sum){
-                count += find(sum-(int)arr[i],arr,i+1,n-1);
-            }
+            count += find(i+1,n,arr,sum-arr[i]);
         }
         return count;
     }
-    int find(int sum ,long []arr,int i,int j){
-        int count = 0;
+    long find(int i,int j,long []arr,long x){
+        j=j-1;
+        int res = 0;
         while(i<j){
-            int s = (int)arr[i]+(int)arr[j];
-            if(s>=sum){
-               j--;
+            long sum = arr[i]+arr[j];
+            if(sum<x){
+                res+=j-i; // if arr[i]+arr[j] is less then x => arr[i] + sum of each 
+                          // number from i to j will be less then x
+                i++;
             }else{
-                count+=j-i;
-                i++;;
+                j--;
             }
         }
-        return count;
+        return res;
     }
 }
 

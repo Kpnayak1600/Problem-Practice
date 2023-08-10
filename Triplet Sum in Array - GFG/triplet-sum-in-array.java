@@ -33,7 +33,7 @@ class Solution{
     //array A[] which sums up to X.
     public static boolean find3Numbers(int A[], int n, int x) { 
        // Your code Here
-       Arrays.sort(A);
+       //Arrays.sort(A);
        for(int i=0;i<n;i++){
            if(find(x-A[i],A,i+1,n-1)){
                return true;

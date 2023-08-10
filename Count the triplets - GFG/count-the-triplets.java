@@ -33,26 +33,26 @@ class Solution {
     int countTriplet(int arr[], int n) {
         // code here
         Arrays.sort(arr);
-        int count =0;
+        int count = 0;
         for(int i=n-1;i>=2;i--){
-            count += find(arr,0,i-1,arr[i]);
+            count+= find(0,i-1,arr[i],arr);
         }
         return count;
     }
-    int find(int arr[],int i,int j,int sum){
-        int count=0;
+    int find(int i,int j,int x,int[]arr){
+        int res = 0;
         while(i<j){
-            int s=arr[i]+arr[j];
-            if(sum==s){
-                count+=1;
+            int sum = arr[i]+arr[j];
+            if(sum==x){
+                res++;
                 i++;
                 j--;
-            }else if(sum<s){
-                j--;
+            }else if(sum<x){
+                i++;
             }else{
-                i++;
+                j--;
             }
         }
-        return count;
+        return res;
     }
 }

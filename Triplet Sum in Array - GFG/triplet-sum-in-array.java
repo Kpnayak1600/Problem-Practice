@@ -35,6 +35,7 @@ class Solution{
     //array A[] which sums up to X.
     public static boolean find3Numbers(int A[], int n, int X) { 
        // Your code Here
+        Arrays.sort(A);
         for(int i=0;i<n;i++){
             int sum = X-A[i];
             if(find(sum,i+1,n,A)){
@@ -44,12 +45,16 @@ class Solution{
         return false;
     }
     static boolean find(int sum,int i,int j,int[]A){
-        Set<Integer>s  = new HashSet<>();
-        for(;i<j;i++){
-            if(s.contains(sum-A[i])){
+        j=j-1;
+        while(i<j){
+            int sum1 = A[i]+A[j];
+            if(sum==sum1){
                 return true;
+            }else if(sum>sum1){
+                i++;
+            }else{
+                j--;
             }
-            s.add(A[i]);
         }
         return false;
     }

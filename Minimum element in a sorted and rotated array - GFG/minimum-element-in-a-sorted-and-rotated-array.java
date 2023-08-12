@@ -34,13 +34,16 @@ public class GFG
 class Solution{
     int findMin(int arr[], int n){
         //complete the function here
+        if(arr[0]<arr[n-1]){
+            return arr[0];
+        }
         int i=0;
         int j=n-1;
         while(i<=j){
             int mid = i+(j-i)/2;
             if(arr[mid]<arr[(mid+1)%n] && arr[mid]<arr[(mid+n-1)%n]){
                 return arr[mid];
-            }else if(arr[mid]<arr[n-1]){
+            }else if(arr[mid]<arr[0]){ 
                 j=mid-1;
             }else{
                 i=mid+1;

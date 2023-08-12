@@ -32,25 +32,24 @@ class Geeks
 class Solution{
     static int majorityElement(int a[], int size){
         // your code here
-        int n = a.length;
         int res = -1;
         int count = 0;
-        for(int i=0;i<n;i++){
-            if(a[i]==res){
-                count++;
-            }else if(count == 0){
-                count = 1;
+        for(int i=0;i<size;i++){
+            if(count==0){
                 res = a[i];
+                count = 1;
+            }else if(res == a[i]){
+                count++;
             }else {
                 count--;
             }
         }
         count = 0;
-        for(int i=0;i<n;i++){
-            if(res == a[i]){
+        for(int i=0;i<size;i++){
+            if(a[i]==res){
                 count++;
             }
         }
-        return count>(n/2)?res:-1;
+        return count>size/2?res:-1;
     }
 }

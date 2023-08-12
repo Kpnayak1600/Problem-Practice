@@ -34,6 +34,7 @@ public class GFG
 class Solution{
     int findMin(int arr[], int n){
         //complete the function here
+        // when array is already sorted
         if(arr[0]<arr[n-1]){
             return arr[0];
         }

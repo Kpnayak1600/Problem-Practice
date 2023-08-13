@@ -35,16 +35,10 @@ public class Main {
 class Solution {
     void segregateEvenOdd(int arr[], int n) {
         // code here
+        // Lomuto Partition
         int i=0;
-        int j=0;
-        for(;j<n;j++){
-            if(arr[j]%2==0){
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-                i++;
-            }
-        }
+        int j=n;
+        
         Arrays.sort(arr,0,i);
         Arrays.sort(arr,i,n);
     }

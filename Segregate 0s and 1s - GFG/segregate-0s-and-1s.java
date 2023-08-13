@@ -36,8 +36,8 @@ public class Main {
 class Solution {
     void segregate0and1(int[] arr, int n) {
         // code here
-        int i=0;
-        int j=n-1;
+        // Hoare's Partition
+        int i=0;int j=n-1;
         while(i<=j){
             if(arr[i]==0){
                 i++;
@@ -48,5 +48,16 @@ class Solution {
                 j--;
             }
         }
+        // Lomuto Partition
+        // int i=0;int j=0;
+        // while(j<n){
+        //     if(arr[j]==0){
+        //         int temp = arr[i];
+        //         arr[i] = arr[j];
+        //         arr[j] = temp;
+        //         i++;
+        //     }
+        //     j++;
+        // }
     }
 }

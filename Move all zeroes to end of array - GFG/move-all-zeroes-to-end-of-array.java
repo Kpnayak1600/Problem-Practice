@@ -35,14 +35,18 @@ public class Main {
 class Solution {
     void pushZerosToEnd(int[] arr, int n) {
         // code here
-        int i=0;
-        for(int j=0;j<n;j++){
-            if(arr[j]!=0){
-                int temp = arr[j];
-                arr[j] = arr[i];
-                arr[i] = temp;
+        // Lomuto Partition
+        int i=0;int j=0;
+        while(j<n){
+            if(arr[j]>0){
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
                 i++;
             }
+            j++;
         }
+        // Hoare's Partition
+        int i=0;int j=
     }
 }

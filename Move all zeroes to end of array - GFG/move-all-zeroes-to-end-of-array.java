@@ -46,7 +46,18 @@ class Solution {
             }
             j++;
         }
-        // Hoare's Partition
-        int i=0;int j=
+        // Hoare's Partition  -> error as it doesn't maintain
+        //                       order of non-zero elements.
+        // int i=0;int j=n-1;
+        // while(i<j){
+        //     if(arr[i]>0){
+        //         i++;
+        //     }else{
+        //         int temp = arr[i];
+        //         arr[i] = arr[j];
+        //         arr[j] = temp;
+        //         j--;
+        //     }
+        // }
     }
 }

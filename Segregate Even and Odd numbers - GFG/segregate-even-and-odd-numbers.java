@@ -31,14 +31,35 @@ public class Main {
 // } Driver Code Ends
 
 
+
+
 //User function Template for Java
 class Solution {
     void segregateEvenOdd(int arr[], int n) {
         // code here
         // Lomuto Partition
-        int i=0;
-        int j=n;
-        
+        // int i=0;
+        // int j=0;
+        // for(;j<n;j++){
+        //     if(arr[j]%2==0){
+        //         int temp = arr[i];
+        //         arr[i] = arr[j];
+        //         arr[j] = temp;
+        //         i++;
+        //     }
+        // }
+        // Hoare Partition
+        int i=0;int j=n-1;
+        while(i<=j){
+            if(arr[i]%2==0){
+                i++;
+            }else{
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                j--;
+            }
+        }
         Arrays.sort(arr,0,i);
         Arrays.sort(arr,i,n);
     }

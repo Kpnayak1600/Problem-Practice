@@ -8,7 +8,7 @@ class GFG {
             new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(read.readLine());
         while (t-- > 0) {
-            long n = Integer.parseInt(read.readLine());
+            int n = Integer.parseInt(read.readLine());
             Solution ob = new Solution();
 
             System.out.println(ob.nthFibonacci(n));
@@ -16,6 +16,8 @@ class GFG {
     }
 }
 // } Driver Code Ends
+
+
 
 
 //User function Template for Java

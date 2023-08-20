@@ -31,51 +31,48 @@ public class Main {
 // } Driver Code Ends
 
 
+
+
 //User function Template for Java
 
 
 
 class Solution {
-    int lastIndex(int[]arr,int n,int x){
-        int start =0;
-        int end = n-1;
-        int res = -1;
-        while(start<=end){
-            int mid = start + (end - start)/2;
-            if(arr[mid]==x){
-                res = mid;
-                start = mid +1;
-            }else if(arr[mid]>x){
-                end = mid -1;
-            }else {
-                start = mid +1;
-            }
-        }
-        return res;
-    }
-    int firstIndex(int[]arr,int n,int x){
-        int start =0;
-        int end = n-1;
-        int res = -1;
-        while(start<=end){
-            int mid = start + (end - start)/2;
-            if(arr[mid]==x){
-                res = mid;
-                end = mid-1;
-            }else if(arr[mid]>x){
-                end = mid -1;
-            }else {
-                start = mid +1;
-            }
-        }
-        return res;
-    }
     int count(int[] arr, int n, int x) {
-        // code here
-        int l = lastIndex(arr,n,x);
-        if(l==-1)
-            return 0;
-        int f = firstIndex(arr,n,x);
-        return l-f+1;
+        int f=firstOccur(arr,n,x);
+        int l=lastOccur(arr,n,x);
+        return f==-1?0:l-f+1;
+    }
+    int firstOccur(int[]arr,int n,int x){
+        int res = -1;
+        int i=0;int j=n-1;
+        while(i<=j){
+            int mid = i+(j-i)/2;
+            if(arr[mid]==x){
+                res = mid;
+                j=mid-1;
+            }else if(arr[mid]>x){
+                j=mid-1;
+            }else{
+                i=mid+1;
+            }
+        }
+        return res;
+    }
+    int lastOccur(int[]arr,int n,int x){
+        int res = -1;
+        int i=0;int j=n-1;
+        while(i<=j){
+            int mid = i+(j-i)/2;
+            if(arr[mid]==x){
+                res = mid;
+                i=mid+1;
+            }else if(arr[mid]>x){
+                j=mid-1;
+            }else{
+                i=mid+1;
+            }
+        }
+        return res;
     }
 }

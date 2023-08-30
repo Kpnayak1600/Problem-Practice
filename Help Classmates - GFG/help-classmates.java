@@ -39,17 +39,18 @@ class GFG
 class Solution {
 	public static int[] help_classmate(int arr[], int n) { 
 	    // Your code goes here
-	    Stack<Integer> s = new Stack<>();
-	    s.push(arr[n-1]);
-	    int[] res = new int[n];
-	    res[n-1] = -1;
-	    for(int i=n-2;i>=0;i--){
-	        while(!s.empty()&&s.peek()>=arr[i]){
-	            s.pop();
+	    int res[] = new int[n];
+	    for(int i=0;i<n;i++){
+	        for(int j=i+1;j<n;j++){
+	            if(arr[i]>arr[j]){
+	                res[i] = arr[j];
+	                break;
+	            }else{
+	                res[i] = -1;
+	            }
 	        }
-	        res [i]= s.empty()?-1:s.peek();
-	        s.push(arr[i]);
 	    }
+	    res[n-1] = -1;
 	    return res;
 	} 
 }

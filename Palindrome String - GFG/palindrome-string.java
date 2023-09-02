@@ -23,10 +23,15 @@ class GFG {
 //User function Template for Java
 
 class Solution {
-    int isPalindrome(String S) {
+    int isPalindrome(String s) {
         // code here
-        StringBuffer str = new StringBuffer(S);
-        str = str.reverse();
-        return str.toString().equals(S) ? 1:0;
+        int j = s.length()-1;
+        int i=0;
+        while(i<j){
+            if(s.charAt(i++)!=s.charAt(j--)){
+                return 0;
+            }
+        }
+        return 1;
     }
 };

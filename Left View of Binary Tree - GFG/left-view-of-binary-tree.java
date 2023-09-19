@@ -108,6 +108,8 @@ class GfG {
 
 
 
+
+
 //User function Template for Java
 
 /* A Binary Tree node
@@ -142,8 +144,8 @@ class Tree{
             res.add(root.data);
             maxLevel=currentLevel;
         }
-        helper(res,root.left,currentLevel++);
+        helper(res,root.left,currentLevel+1);
         // go right
-        helper(res,root.right,currentLevel++);
+        helper(res,root.right,currentLevel+1);
     }
 }
